@@ -4,4 +4,16 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Pages\Index - Copy.cshtml.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Pages\Index - Copy.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Pages\estilos.css" />
+  </ItemGroup>
+
 </Project>
