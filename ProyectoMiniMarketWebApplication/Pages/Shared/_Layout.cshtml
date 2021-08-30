@@ -3,28 +3,26 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - ProyectoMiniMarketWebApplication</title>
+    <title>Minimarket M&S</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-lg navbar-light bg-white">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">ProyectoMiniMarketWebApplication</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
+                <img src="/img/logo.jpg" alt="taniguchi" />
+               
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <ul class="navbar-nav mx-auto font-weight-bolder ">
+                        <li class="nav-item ">
+                            <a class="nav-link active" href="#">Inicio</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
-                        </li>
-                    </ul>
+                            <a class="nav-link" href="#">Licores</a>
+                         </li>
+                        
+                    </ul>                                
                 </div>
             </div>
         </nav>
@@ -35,10 +33,62 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2021 - ProyectoMiniMarketWebApplication - <a asp-area="" asp-page="/Privacy">Privacy</a>
+    <footer class=" bg-dark">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-md-4 col-sm-12 mb-3 mb-md-0">
+                    <span class="text-white">Minimarket M&S</span>
+                    <p class="text-muted">Aceptamos todas las tarjetas</p>
+                    <ul class="list-inline">
+                        <li class="list-inline-item"><i class="fab fa-cc-visa text-white"></i></li>
+                        <li class="list-inline-item"><i class="fab fa-cc-mastercard text-white"></i></li>
+                        <li class="list-inline-item"><i class="fab fa-cc-discover text-white"></i></li>
+                        <li class="list-inline-item"><i class="fab fa-cc-paypal text-white"></i></li>
+                        <li class="list-inline-item"><i class="fab fa-cc-amex text-white"></i></li>
+                    </ul>
+                </div>
+                <div class="col-md-2 col-sm-12 mb-3 mb-md-0">
+                    <h6 class="text-white">Nosotros</h6>
+                    <ul class="list-unstyled text-muted mb-0">
+                        <li class="mb-2"><a class="reset-anchor" href="#">Inicio</a></li>
+                        <li class="mb-2"><a class="reset-anchor" href="#">Quiénes Somos</a></li>
+                        <li class="mb-2"><a class="reset-anchor" href="#"></a></li>
+                        <li class="mb-2"><a class="reset-anchor" href="#">Contáctanos</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2 col-sm-12 mb-3 mb-md-0">
+                    <h6 class="text-white">Atención al Cliente</h6>
+                    <ul class="list-unstyled text-muted mb-0">
+                        <li class="mb-2"> <a class="reset-anchor" href="#">Mi Cuenta</a></li>
+                        <li class="mb-2"> <a class="reset-anchor" href="#">Preguntas Frecuentes</a></li>
+                        <li class="mb-2"> <a class="reset-anchor" href="#">Términos y condiciones</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 col-sm-12 mb-3 mb-md-0">
+                    <p class="lead mb-1 text-white">Telf: (+51) 941 488 793</p>
+                    <p class="text-muted">Av. Las Palemeras 128 Int 102<br />Los Olivos - Lima</p>
+                    <ul class="list-inline mb-0">
+                        <li class="list-inline-item"><a class="social-icon" href="#"><i class="fab fa-facebook-f"></i></a></li>
+                        <li class="list-inline-item"><a class="social-icon" href="#"><i class="fab fa-twitter"></i></a></li>
+                        <li class="list-inline-item"><a class="social-icon" href="#"><i class="fab fa-youtube"></i></a></li>
+                        <li class="list-inline-item"><a class="social-icon" href="#"><i class="fab fa-pinterest"></i></a></li>
+                    </ul>
+                </div>
+            </div>
         </div>
+        <div class="container">
+            <div class="border-top py-4" style="border-color: #1d1d1d !important">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <p class="small text-muted mb-0">© 2021 Todos los derechos reservados.</p>
+                    </div>
+                    <div class="col-lg-6 text-lg-end">
+                        <p class="small text-muted mb-0">Desarrollado por <a class="text-white reset-anchor" href="#" target="_blank">Taniguchi</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
     </footer>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
