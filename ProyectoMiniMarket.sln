@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31613.86
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProyectoMiniMarketWebApplication", "ProyectoMiniMarketWebApplication\ProyectoMiniMarketWebApplication.csproj", "{7501E68C-A38D-4692-8D00-227B96625DC6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProyectoMiniMarketWebApplication", "ProyectoMiniMarketWebApplication\ProyectoMiniMarketWebApplication.csproj", "{7501E68C-A38D-4692-8D00-227B96625DC6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{C2851E08-908D-4E87-BF8C-85432439228F}"
 EndProject
@@ -13,11 +13,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Models", "Models", "{E623BB
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Controllers", "Controllers", "{97FF91FF-143D-491F-8EF9-5242579ED943}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseMinimarket", "DatabaseMinimarket\DatabaseMinimarket.csproj", "{EB698E98-F425-4054-B060-A19ADD8ABE0B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DatabaseMinimarket", "DatabaseMinimarket\DatabaseMinimarket.csproj", "{EB698E98-F425-4054-B060-A19ADD8ABE0B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ControllerMinimarket", "ControllerMinimarket\ControllerMinimarket.csproj", "{1A9BA5BC-D5F0-472C-9234-8CBC0D8D0BAA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ControllerMinimarket", "ControllerMinimarket\ControllerMinimarket.csproj", "{1A9BA5BC-D5F0-472C-9234-8CBC0D8D0BAA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelMinimarket", "ModelMinimarket\ModelMinimarket.csproj", "{7F94E625-7764-4E70-A165-2D37B869FB13}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ModelMinimarket", "ModelMinimarket\ModelMinimarket.csproj", "{7F94E625-7764-4E70-A165-2D37B869FB13}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
