@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Pages\estilos.css" />
+    <None Include="wwwroot\css\estilos.css" />
   </ItemGroup>
 
 </Project>
