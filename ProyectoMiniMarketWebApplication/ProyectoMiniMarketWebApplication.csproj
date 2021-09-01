@@ -5,15 +5,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Pages\Index - Copy %282%29.cshtml.cs" />
     <Compile Remove="Pages\Index - Copy.cshtml.cs" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="Pages\Index - Copy %282%29.cshtml" />
     <Content Remove="Pages\Index - Copy.cshtml" />
+    <Content Remove="Pages\Login.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Pages\estilos.css" />
+    <None Include="wwwroot\css\estilos.css" />
   </ItemGroup>
 
 </Project>
