@@ -13,6 +13,8 @@
     <Content Remove="Pages\Index - Copy %282%29.cshtml" />
     <Content Remove="Pages\Index - Copy.cshtml" />
     <Content Remove="Pages\Login.cshtml" />
+    <Content Remove="wwwroot\css\.editorconfig" />
+    <Content Remove="wwwroot\css\carritoCompras.cs" />
   </ItemGroup>
 
   <ItemGroup>
