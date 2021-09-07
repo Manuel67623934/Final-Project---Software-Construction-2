@@ -4,4 +4,9 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Dato.ClassLibrary\Dato.ClassLibrary.csproj" />
+    <ProjectReference Include="..\Entidad.ClassLibrary\Entidad.ClassLibrary.csproj" />
+  </ItemGroup>
+
 </Project>
