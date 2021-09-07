@@ -15,10 +15,18 @@ namespace Logica.ClassLibrary
         {
             CategoriaDA data = new CategoriaDA();
             List<CategoriaBE> lista;
+            List<CategoriaBE> listaa;
             lista = data.getCategoria();
-            var FiltrarCategoria = lista.Where(lista.)
-            lista.Where();
+            int j = 0;
+            for (int i = 0; i < lista.Count; i++)
+            {
+                if(lista[i].Estado == '1')
+                {
+                    lista [j]= lista[i];
+                    j++;
+                }
 
+            }
             return lista;
         }
     }
