@@ -19,4 +19,8 @@
     <None Include="wwwroot\css\estilos.css" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Logica.ClassLibrary\Logica.ClassLibrary.csproj" />
+  </ItemGroup>
+
 </Project>
