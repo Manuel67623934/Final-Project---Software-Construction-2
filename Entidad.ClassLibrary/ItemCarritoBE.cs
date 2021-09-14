@@ -1,0 +1,24 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
+
+namespace Entidad.ClassLibrary
+{
+    public class ItemCarritoBE
+    {
+        [Key]
+        [Required]
+        public int Id { get; set; }
+        [Required]
+        public ProductoBE Producto { get; set; }
+        [Required]
+        public int Cantidad { get; set; }
+        [Required]
+        public double Subtotal { get; set; }
+        [Required]
+        public double Total { get; set; }
+    }
+}

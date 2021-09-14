@@ -11,10 +11,14 @@ namespace Entidad.ClassLibrary
         public int Id { get; set; }
         [Required]
         public string Nombre { get; set; }
+        //[Required]
+        //public string UrlSeo { get; set; }
+        //[Required]
+        //public int Stock { get; set; }
+        //[Required]
+        //public int Descripcion { get; set; }
         [Required]
-        public string UrlSeo { get; set; }
-        [Required]
-        public int Stock { get; set; }
+        public double Precio { get; set; }
 
     }
 }
