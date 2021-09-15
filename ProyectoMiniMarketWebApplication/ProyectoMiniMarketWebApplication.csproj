@@ -22,6 +22,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Syncfusion.HtmlToPdfConverter.QtWebKit.Net.Core" Version="19.2.0.55" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Logica.ClassLibrary\Logica.ClassLibrary.csproj" />
   </ItemGroup>
 

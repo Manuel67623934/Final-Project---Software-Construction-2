@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
+    <PackageReference Include="Rotativa.AspNetCore" Version="1.2.0-beta" />
+    <PackageReference Include="Syncfusion.HtmlToPdfConverter.QtWebKit.Net.Core" Version="19.2.0.55" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Rotativa\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Dato.ClassLibrary\Dato.ClassLibrary.csproj" />
+    <ProjectReference Include="..\Entidad.ClassLibrary\Entidad.ClassLibrary.csproj" />
+  </ItemGroup>
+
+</Project>

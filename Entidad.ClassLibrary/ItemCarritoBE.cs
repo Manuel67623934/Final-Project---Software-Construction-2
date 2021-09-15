@@ -15,6 +15,10 @@ namespace Entidad.ClassLibrary
         [Required]
         public ProductoBE Producto { get; set; }
         [Required]
+        public string ProductoNombre { get; set; }
+        [Required]
+        public double ProductoPrecio { get; set; }
+        [Required]
         public int Cantidad { get; set; }
         [Required]
         public double Subtotal { get; set; }

@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
+
 namespace Logica.ClassLibrary
 {
    public class CategoriaBL

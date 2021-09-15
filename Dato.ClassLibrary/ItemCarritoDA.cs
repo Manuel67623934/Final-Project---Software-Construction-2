@@ -7,7 +7,7 @@ using Entidad.ClassLibrary;
 
 namespace Dato.ClassLibrary
 {
-    public static class ItemCarritoDA
+    public class ItemCarritoDA
     {
         static List<ItemCarritoBE> ItemsDelCarrito { get; }
         static int nextId = 1;
@@ -20,7 +20,7 @@ namespace Dato.ClassLibrary
 
             ItemsDelCarrito = new List<ItemCarritoBE>
             {
-                new ItemCarritoBE{Id=0, Producto=producto[0], Cantidad=0, Subtotal= 0.0, Total=0.0} 
+                new ItemCarritoBE{Id=0, Producto = producto[0], ProductoNombre=producto[0].Nombre, ProductoPrecio = producto[0].Precio, Cantidad=00, Subtotal=000, Total=0000} 
             };
         }
 

@@ -1,0 +1,79 @@
+﻿@using Entidad.ClassLibrary;
+@using Dato.ClassLibrary;
+
+@{
+    Layout = null;
+    //ItemCarritoDA datos = new ItemCarritoDA();
+    List<ItemCarritoBE> itemsCarritoLista = ItemCarritoDA.GetAll();
+    string id;
+    string nombreProducto;
+    string precioProducto;
+    string cantidad;
+    string subtotal;
+    
+}
+
+<head>
+    <script src="https://kit.fontawesome.com/4b71027628.js" crossorigin="anonymous"></script>
+    <link href="/css/carritoCompra.css" rel="stylesheet" />
+</head>
+
+
+<table class="table table-bordered">
+    <thead>
+
+
+        <tr>
+            <th style="text-align: center;">
+                <h4>ID</h4>
+            </th>
+            <th style="text-align: center;">
+                <h4>PRODUCTO</h4>
+            </th>
+            <th style="text-align: center;">
+                <h4>PRECIO</h4>
+            </th>
+            <th style="text-align: center;">
+                <h4>CANTIDAD</h4>
+            </th>
+            <th style="text-align: center;">
+                <h4>SUBTOTAL</h4>
+            </th>
+
+        </tr>
+
+
+    </thead>
+
+    <tbody>
+
+        @foreach (var recorreItems in itemsCarritoLista)
+        {
+            id = Convert.ToString(recorreItems.Id);
+            nombreProducto = Convert.ToString(recorreItems.ProductoNombre);
+            precioProducto = Convert.ToString(recorreItems.ProductoPrecio);
+            cantidad = Convert.ToString(recorreItems.Cantidad);
+            subtotal = Convert.ToString(recorreItems.Subtotal);
+
+
+        <td style="text-align: center;">@id</td>
+        <td style="text-align: center;">@nombreProducto</td>
+        <td style="text-align: center;">@precioProducto</td>
+        <td style="text-align: center;">@cantidad</td>
+        <td style="text-align: center;">@subtotal</td>
+    }
+
+        @string total = Convert.ToString(recorreItems.
+        <tr>
+
+
+            <td colspan="3" style="text-align: right;">Total a cancelar</td>
+            <td style="text-align: center;"><a href="#"> 211.00 </a></td>
+        </tr>
+
+        </tbody>
+
+
+
+    </table>
+
