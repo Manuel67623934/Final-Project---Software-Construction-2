@@ -13,10 +13,16 @@
     <Content Remove="Pages\Index - Copy %282%29.cshtml" />
     <Content Remove="Pages\Index - Copy.cshtml" />
     <Content Remove="Pages\Login.cshtml" />
+    <Content Remove="wwwroot\css\.editorconfig" />
+    <Content Remove="wwwroot\css\carritoCompras.cs" />
   </ItemGroup>
 
   <ItemGroup>
     <None Include="wwwroot\css\estilos.css" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Syncfusion.HtmlToPdfConverter.QtWebKit.Net.Core" Version="19.2.0.55" />
   </ItemGroup>
 
   <ItemGroup>

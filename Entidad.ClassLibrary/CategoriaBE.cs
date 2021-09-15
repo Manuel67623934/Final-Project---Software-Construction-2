@@ -13,6 +13,6 @@ namespace Entidad.ClassLibrary
         [Required]
         public char Estado { get; set; }
         [Required]
-        public string UrlSeo { get; set; }
+        public string UrlSeo { get; set; }        
     }
 }

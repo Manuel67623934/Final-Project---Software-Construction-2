@@ -1,0 +1,15 @@
+﻿body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    background: url(/img/portada.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+}
+h1 {
+    
+}
+table {
+    margin-top: 120px;
+    background: #fff;
+    border: 1px none #000;    
+}

@@ -1,32 +1,87 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Portada";
+    ViewData["Title"] = "Portada";    
+
 }
 
 
 
+<!DOCTYPE html>
+<html lang="es">
 <head>
-
-    <div class="container">
-        <div class="row">
-            <!-- Elementos generados a partir del JSON -->
-            <main id="items" class="col-sm-8 row"></main>
-            <!-- Carrito -->
-            <aside class="col-sm-4">
-                <h2>Carrito</h2>
-                <!-- Elementos del carrito -->
-                <ul id="carrito" class="list-group"></ul>
-                <hr>
-                <!-- Precio total -->
-                <p class="text-right">Total: <span id="total"></span>&euro;</p>
-                <button id="boton-vaciar" class="btn btn-danger">Vaciar</button>
-            </aside>
-        </div>
-    </div>
-
-
+    <script src="https://kit.fontawesome.com/4b71027628.js" crossorigin="anonymous"></script>
+    <link href="/css/carritoCompra.css" rel="stylesheet" />
 </head>
+<body>
 
 
-   
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th style="text-align: center;">
+                    <h4>Nombre</h4>
+                </th>
+                <th style="text-align: center;">
+                    <h4>Cantidad</h4>
+                </th>
+                <th style="text-align: center;">
+                    <h4>Precio unitario</h4>
+                </th>
+                <th style="text-align: center;">
+                    <h4>Subtotal</h4>
+                </th>
+
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td style="text-align: center;">Wiski 1.2L</td>
+                <td style="text-align: center;">4</td>
+                <td style="text-align: center;">24.00L</td>
+                <td style="text-align: center;">96.00</td>
+
+
+            </tr>
+            <tr>
+                <td style="text-align: center;">Old Time 600ml</td>
+                <td style="text-align: center;">3</td>
+                <td style="text-align: center;">15.00</td>
+                <td style="text-align: center;">45.00</td>
+
+            </tr>
+            <tr>
+                <td style="text-align: center;">FourLoco 500ml</td>
+                <td style="text-align: center;">7</td>
+                <td style="text-align: center;">10.00</td>
+                <td style="text-align: center;">70.00</td>
+
+            </tr>
+            <tr>
+                <td colspan="3" style="text-align: right;">Total a cancelar</td>
+                <td style="text-align: center;"><a href="#"> 211.00 </a></td>
+
+
+            </tr>
+        </tbody>
+
+    </table>
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
+
+
+
