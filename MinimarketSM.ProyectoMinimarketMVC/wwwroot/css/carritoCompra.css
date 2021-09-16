@@ -30,3 +30,16 @@ caption {
 th {
     background: #1e90ff;
 }
+
+p {
+    text-align: left;
+    background: #fff;
+}
+b {
+    text-align: left;
+    background: #fff;
+}
+strong {
+    text-align: center;
+    background: #1e90ff;
+}

@@ -1,0 +1,45 @@
+﻿
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    background: url(/imagen/logo.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+}
+table {
+    width: 100%;
+    border: 1px solid ##1e90ff;
+}
+
+th, td {
+    width: 25%;
+    text-align: left;
+    vertical-align: top;
+    border: 1px solid #1e90ff;
+    border-collapse: collapse;
+    padding: 0.3em;
+    caption-side: bottom;
+}
+
+caption {
+    padding: 0.3em;
+    color: #fff;
+    background: #1e90ff;
+}
+
+th {
+    background: #1e90ff;
+}
+
+p {
+    text-align: left;
+    background: #fff;
+}
+b {
+    text-align: left;
+    background: #fff;
+}
+strong {
+    text-align: center;
+    background: #1e90ff;
+}

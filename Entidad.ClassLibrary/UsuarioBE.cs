@@ -14,7 +14,9 @@ namespace Entidad.ClassLibrary
         public string User { get; set; }
         [Required]
         public string Password { get; set; }
-            
-        
+        [Required]
+        public string Address { get; set; }
+        [Required]
+        public string Reference { get; set; }
     }
 }

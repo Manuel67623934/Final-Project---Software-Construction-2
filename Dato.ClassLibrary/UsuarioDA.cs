@@ -9,9 +9,9 @@ namespace Dato.ClassLibrary
 {
     public class UsuarioDA
     {
-        public UsuarioBE GetUsuario()
+        public UsuarioBE GetAll()
         {
-            return new UsuarioBE { User = "admi", Password = "1234"};
+            return new UsuarioBE { User = "José Manuel Bravo Rengifo", Password = "Cliente123", Address = "Jr. Example #456", Reference= "Casa blanca de 2 pisos" };
         }
     }
 }
