@@ -15,20 +15,22 @@ namespace Logica.ClassLibrary
         public List<CategoriaBE> getCategoria()
         {
             CategoriaDA data = new CategoriaDA();
-            List<CategoriaBE> lista;
-            List<CategoriaBE> listaa;
+            List<CategoriaBE> lista ;
+           List<CategoriaBE> lista_temp = new List<CategoriaBE> ();
             lista = data.getCategoria();
-            int j = 0;
-            for (int i = 0; i < lista.Count; i++)
-            {
-                if(lista[i].Estado == '1')
-                {
-                    lista [j]= lista[i];
-                    j++;
-                }
+           
+              for (int i = 0; i < lista.Count; i++)
+              {
+                  if(lista[i].Estado.Equals('1'))
+                  {
+                 
+                      lista_temp.Add(lista[i]);
 
-            }
-            return lista;
+                  }
+
+              }
+            Console.WriteLine(lista_temp);
+            return lista_temp;
         }
     }
 }

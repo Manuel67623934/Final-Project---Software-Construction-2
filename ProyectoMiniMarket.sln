@@ -21,6 +21,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Logica.ClassLibrary", "Logi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProyectoMinimarketMVC", "MinimarketSM.ProyectoMinimarketMVC\ProyectoMinimarketMVC.csproj", "{BC10BC44-F52D-43CB-9BBF-4B7BA9468D40}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Presentacion.WebApplication", "Presentacion.WebApplication\Presentacion.WebApplication.csproj", "{0FFB6DC6-FF27-400E-AF0A-EB4ED5C2B153}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +49,10 @@ Global
 		{BC10BC44-F52D-43CB-9BBF-4B7BA9468D40}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BC10BC44-F52D-43CB-9BBF-4B7BA9468D40}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BC10BC44-F52D-43CB-9BBF-4B7BA9468D40}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0FFB6DC6-FF27-400E-AF0A-EB4ED5C2B153}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0FFB6DC6-FF27-400E-AF0A-EB4ED5C2B153}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0FFB6DC6-FF27-400E-AF0A-EB4ED5C2B153}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0FFB6DC6-FF27-400E-AF0A-EB4ED5C2B153}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -57,6 +63,7 @@ Global
 		{91318EEC-7BCE-4522-BE95-1C8347CC4D86} = {E623BB16-4B4C-4BD8-B4E0-89538DC9FE65}
 		{D9CF0E43-0380-4DFE-A8FE-06243FF1F61E} = {97FF91FF-143D-491F-8EF9-5242579ED943}
 		{BC10BC44-F52D-43CB-9BBF-4B7BA9468D40} = {E1F5E041-744D-4081-9C54-976FE6A0B8EE}
+		{0FFB6DC6-FF27-400E-AF0A-EB4ED5C2B153} = {E1F5E041-744D-4081-9C54-976FE6A0B8EE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C3D5BE10-E28F-4233-A5CA-55A6566ABDA7}

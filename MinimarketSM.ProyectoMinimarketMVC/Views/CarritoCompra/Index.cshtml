@@ -1,0 +1,93 @@
+﻿@using Entidad.ClassLibrary;
+@using Dato.ClassLibrary;
+
+@{
+    Layout = null;
+    //ItemCarritoDA datos = new ItemCarritoDA();
+    UsuarioDA user = new UsuarioDA();
+    UsuarioBE userClient = user.GetAll();
+    List<ItemCarritoBE> itemsCarritoLista = ItemCarritoDA.GetAll();
+    string id;
+    string nombreProducto;
+    string precioProducto;
+    string cantidad;
+    string subtotal;
+    double total = itemsCarritoLista.Last().Total;
+    string totalCadena = Convert.ToString(total);
+
+}
+
+<head>
+    <script src="https://kit.fontawesome.com/4b71027628.js" crossorigin="anonymous"></script>
+    <link href="/css/EstiloGeneral.css" rel="stylesheet" />
+
+    <strong>MINIMARKET S&M</strong>
+    <hr>
+    <b>Cliente:</b>
+    <p>@userClient.User</p>
+    <b>Dirección:</b>
+    <p>@userClient.Address</p>
+    <b>Referencia:</b>
+    <p>@userClient.Reference</p>
+
+</head>
+
+
+
+<table class="table table-bordered">
+    <thead>
+
+
+        <tr>
+            <th style="text-align: center;">
+                <h4>ID</h4>
+            </th>
+            <th style="text-align: center;">
+                <h4>PRODUCTO</h4>
+            </th>
+            <th style="text-align: center;">
+                <h4>PRECIO</h4>
+            </th>
+            <th style="text-align: center;">
+                <h4>CANTIDAD</h4>
+            </th>
+            <th style="text-align: center;">
+                <h4>SUBTOTAL</h4>
+            </th>
+
+        </tr>
+
+
+    </thead>
+
+    <tbody>
+
+        @foreach (var recorreItems in itemsCarritoLista)
+        {
+            id = Convert.ToString(recorreItems.Id);
+            nombreProducto = Convert.ToString(recorreItems.ProductoNombre);
+            precioProducto = Convert.ToString(recorreItems.ProductoPrecio);
+            cantidad = Convert.ToString(recorreItems.Cantidad);
+            subtotal = Convert.ToString(recorreItems.Subtotal);
+
+
+        <td style="text-align: center;">@id</td>
+        <td style="text-align: center;">@nombreProducto</td>
+        <td style="text-align: center;">@precioProducto</td>
+        <td style="text-align: center;">@cantidad</td>
+        <td style="text-align: center;">@subtotal</td>
+    }
+
+
+        <tr>
+
+            <td colspan="4" style="text-align: center;">Total a cancelar</td>
+            <td style="text-align: center;"><a href="#">@totalCadena </a></td>
+        </tr>
+
+        </tbody>
+
+
+
+    </table>
+
