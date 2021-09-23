@@ -18,7 +18,6 @@ namespace Logica.ClassLibrary
             List<CategoriaBE> lista ;
            List<CategoriaBE> lista_temp = new List<CategoriaBE> ();
             lista = data.getCategoria();
-           
               for (int i = 0; i < lista.Count; i++)
               {
                   if(lista[i].Estado.Equals('1'))
