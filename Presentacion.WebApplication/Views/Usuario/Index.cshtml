@@ -1,0 +1,47 @@
+﻿@model UsuarioModel
+@{
+
+    ViewData["Title"] = "Index";
+    Layout = null;
+}
+
+
+<head>
+    <link href="/css/EstiloGeneral.css" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/4b71027628.js" crossorigin="anonymous"></script>
+
+</head>
+
+
+<body>
+
+    
+        <h1>Iniciar Sesión  </h1>
+
+
+        <div class="row">
+            <div class="col-md-3 form-horizontal">
+                <form action="/Usuario/ValidarLogin" method="post">
+                    <div class="input-contenedor">
+                        <i class="fas fa-user icon"></i>
+                        <input type="text" class="form-control" name="usr" placeholder="Usuario" required autofocus>
+                    </div>
+
+                    <div class="input-contenedor">
+                        <i class="fas fa-key icon"></i>
+                        <input type="password" class="form-control" name="pwd" placeholder="Contraseña" required>
+                    </div>
+
+                    <button class="btn btn-primary" type="submit">
+                        Iniciar sesión
+                    </button>
+
+
+
+
+                </form>
+            </div>
+
+        </div>
+    
+</body>
