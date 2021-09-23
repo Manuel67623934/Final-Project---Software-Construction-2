@@ -110,7 +110,7 @@ namespace Presentacion.WebApplication.Controllers
 
             if (loginExitoso == true)
             {
-                return View("/Home/Index");
+                return View("../Home/Index");
                 
             }
             else

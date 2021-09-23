@@ -21,7 +21,7 @@
 
         <div class="row">
             <div class="col-md-3 form-horizontal">
-                <form action="/Usuario/ValidarLogin" method="post">
+                <form asp-controller="Usuario" asp-action="ValidarLogin" method="post">
                     <div class="input-contenedor">
                         <i class="fas fa-user icon"></i>
                         <input type="text" class="form-control" name="usr" placeholder="Usuario" required autofocus>
