@@ -31,7 +31,7 @@ namespace Logica.ClassLibrary
             Console.WriteLine(lista_temp);
             return lista_temp;
         }
-        public List<ProductoBE> GetProductos(string url_seo)
+        public List<ProductoBE> GetProductos(string Url_Seo)
         {
             ProductoDA dato_producto = new ProductoDA();
             CategoriaDA dato_categoria = new CategoriaDA();
@@ -43,7 +43,7 @@ namespace Logica.ClassLibrary
             int id_categoria = 0;
             for (int i = 0; i < lista_categoria.Count; i++)
             {
-                if (lista_categoria[i].UrlSeo.Equals(url_seo))
+                if (lista_categoria[i].UrlSeo.Equals(Url_Seo))
                 {
                     id_categoria = lista_categoria[i].Id;
                 }
@@ -57,6 +57,20 @@ namespace Logica.ClassLibrary
             }
 
             return lista_temp;
+        }
+        public CategoriaBE ObtenerCategoria (string Url_Seo)
+        {
+            List<CategoriaBE> lista_categoria = new CategoriaDA().getCategoria();
+            CategoriaBE temp = new CategoriaBE();
+            for (int i = 0; i < lista_categoria.Count; i++)
+            {
+                if (lista_categoria[i].UrlSeo.Equals(Url_Seo))
+                {
+                    temp = lista_categoria[i];
+                }
+            }
+
+            return temp;
         }
     }
 }

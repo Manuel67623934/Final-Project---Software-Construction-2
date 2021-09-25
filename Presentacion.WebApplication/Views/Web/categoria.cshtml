@@ -1,1 +1,40 @@
-﻿
+﻿@model WebModel
+<!-- Inicio Título -->
+<section class="bg-light">
+    <div class="container py-4">
+        <h1 class="mb-1 hero-heading">@Model.categoria.Nombre</h1>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb mb-0 px-0">
+                <li class="breadcrumb-item"><a href="/">Inicio</a></li>
+                <li class="breadcrumb-item active" aria-current="page">@Model.categoria.Nombre</li>
+            </ol>
+        </nav>
+    </div>
+</section>
+<!-- Fin Título -->
+<!-- Inicio Contenido -->
+<section class="my-5">
+    <div class="container">
+        <div class="row">
+            @foreach (var item in @Model.prod)
+            {
+               <div class="col-md-3">
+        <div class="card">
+            <img src="https://via.placeholder.com/285x180/?text=Producto" class="card-img-top" alt="producto">
+            <div class="card-body">
+                <h5 class="card-title text-center">@item.Nombre</h5>
+                <p class="card-text text-center text-danger">S/. @item.Precio </p>
+                <div class="d-grid gap-2">
+                    <a class="btn btn-dark" asp-controller="Web" asp-action="Producto" asp-route-Url_Seo=@item.UrlSeo >Ver detalle</a>
+                </div>
+            </div>
+        </div>
+        </div>
+
+            }
+
+           
+        </div>
+    </div>
+</section>
+<!-- Fin Contenido -->

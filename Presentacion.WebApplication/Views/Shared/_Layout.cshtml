@@ -24,7 +24,7 @@
                         @foreach (var item in Model.categoria_layout)
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Web" asp-action="Categoria">@item.Nombre</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Web" asp-action="Categoria" asp-route-Url_Seo=@item.UrlSeo>@item.Nombre</a>
                             </li>
 
                         }

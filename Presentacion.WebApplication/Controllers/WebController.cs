@@ -30,18 +30,24 @@ namespace Presentacion.WebApplication.Controllers
             return View();
         }
 
-        public ActionResult Categoria (string Url_seo)
+        public ActionResult Categoria (string Url_Seo)
         {
             CategoriaBL categoria = new CategoriaBL();
-            List<ProductoBE> lista_producto = categoria.GetProductos(Url_seo);
+            List<CategoriaBE> lista_categoria = new CategoriaBL().getCategorias();
+            List<ProductoBE> lista_producto = categoria.GetProductos(Url_Seo);
+            CategoriaBE cate = new CategoriaBL().ObtenerCategoria(Url_Seo);
             WebModel model = new WebModel()
             {
-                prod = lista_producto
+                prod = lista_producto,
+                categoria = cate,
+                categoria_layout=  lista_categoria
+                
+               
             };
             
           
 
-            return View() ;
+            return View(model) ;
         }
        
     }
