@@ -21,20 +21,14 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Inicio</a>
                         </li>
-                        @foreach (var item in Model.cate)
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Web" asp-action="Categoria">@item.Nombre</a>
-                            </li>
-
-                        }
+                      
 
 
 
                     </ul>
                     <form class="d-flex">
-                        <a class="btn btn-outline-success" asp-controller="Usuario" asp-action="Index">Login</a>
-                        <a class="btn btn-outline-success" asp-controller="Web" asp-action="Registro">Registro</a>
+                        <a class="btn btn-outline-success" asp-controller="Usuario" asp-action="Login">Login</a>
+                        <a class="btn btn-outline-success" asp-controller="Usuario" asp-action="Registration">Registro</a>
                     </form>
                 </div>
             </div>

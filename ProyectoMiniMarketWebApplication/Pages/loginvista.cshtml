@@ -35,3 +35,30 @@
     </form>
 
 </body>
+
+
+
+<div class="contenedor">
+
+    <div class="col-md-3 form-horizontal">
+        <form asp-controller="Usuario" asp-action="ValidarLogin" method="post">
+            <div class="input-contenedor">
+                <i class="fas fa-user icon"></i>
+                <input type="text" class="form-control" name="usr" placeholder="Usuario" required autofocus>
+            </div>
+
+            <div class="input-contenedor">
+                <i class="fas fa-key icon"></i>
+                <input type="password" class="form-control" name="pwd" placeholder="Contraseña" required>
+            </div>
+
+            <button class="button" type="submit">
+                Iniciar sesión
+            </button>
+            <p>Deseo ser cliente <a class="link" href="Registro">Registrate</a></p>
+
+        </form>
+    </div>
+
+
+</div>
