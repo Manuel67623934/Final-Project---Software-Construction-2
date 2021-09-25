@@ -6,11 +6,9 @@ using System.Threading.Tasks;
 
 namespace Presentacion.WebApplication.Models
 {
-    public class CategoriaModel
+    public class ProductoModel
     {
+        public ProductoBE producto_solo { get; set; }
         public List<CategoriaBE> categoria_layout { get; set; }
-        public List<ProductoBE> prod { get; set; }
-        public CategoriaBE categoria { get; set; }
-        public string prueba { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Entidad.ClassLibrary
 {
@@ -7,6 +8,9 @@ namespace Entidad.ClassLibrary
         [Key]
         [Required]
         public int Id { get; set; }
+        [ForeignKey("CategoriaDA")]
+        [Required]
+        public int id_categoria { get; set; }
         [Required]
         public string Nombre { get; set; }
         [Required]

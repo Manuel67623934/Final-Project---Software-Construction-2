@@ -22,15 +22,16 @@ namespace Presentacion.WebApplication.Controllers
 
         public IActionResult Index()
         {
-          List<CategoriaBE> categoria = new CategoriaBL().getCategoria();
+          List<CategoriaBE> categoria = new CategoriaBL().getCategorias();
             List<ProductoBE> producto = new ProductoBL().GetProductos();
-            CategoriaModel model = new CategoriaModel()
+            WebModel model = new WebModel()
             {
                 prod = producto,
-               cate = categoria,
+               categoria_layout = categoria,
                 prueba = "holamundo"
         };
-            return View(model);
+                      
+            return View (model);
         }
 
         public IActionResult Privacy()

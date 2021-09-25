@@ -28,5 +28,27 @@ namespace Logica.ClassLibrary
             }
             return lista_temp;
         }
+
+        public ProductoBE getProducto(string Url_Seo)
+        {
+            ProductoDA dato = new ProductoDA();
+            List<ProductoBE> lista;
+            ProductoBE product = new ProductoBE();
+            lista = dato.getProducto();
+            for (int i = 0; i < lista.Count; i++)
+            {
+                if (lista[i].UrlSeo.Equals(Url_Seo))
+                {
+                    product.Id = lista[i].Id;
+                    product.id_categoria = lista[i].id_categoria;
+                    product.Nombre = lista[i].Nombre;
+                    product.Descripcion = lista[i].Descripcion;
+                    product.Precio = lista[i].Precio;
+                    product.Stock = lista[i].Stock;
+                    product.UrlSeo = lista[i].UrlSeo;                    
+                }
+            }
+            return product;
+        }
     }
 }

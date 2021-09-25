@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31613.86
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProyectoMiniMarketWebApplication", "ProyectoMiniMarketWebApplication\ProyectoMiniMarketWebApplication.csproj", "{7501E68C-A38D-4692-8D00-227B96625DC6}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Datos", "Datos", "{C2851E08-908D-4E87-BF8C-85432439228F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Views", "Views", "{E1F5E041-744D-4081-9C54-976FE6A0B8EE}"
@@ -19,9 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entidad.ClassLibrary", "Ent
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Logica.ClassLibrary", "Logica.ClassLibrary\Logica.ClassLibrary.csproj", "{D9CF0E43-0380-4DFE-A8FE-06243FF1F61E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProyectoMinimarketMVC", "MinimarketSM.ProyectoMinimarketMVC\ProyectoMinimarketMVC.csproj", "{BC10BC44-F52D-43CB-9BBF-4B7BA9468D40}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Presentacion.WebApplication", "Presentacion.WebApplication\Presentacion.WebApplication.csproj", "{0FFB6DC6-FF27-400E-AF0A-EB4ED5C2B153}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Presentacion.WebApplication", "Presentacion.WebApplication\Presentacion.WebApplication.csproj", "{0FFB6DC6-FF27-400E-AF0A-EB4ED5C2B153}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +25,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{7501E68C-A38D-4692-8D00-227B96625DC6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7501E68C-A38D-4692-8D00-227B96625DC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7501E68C-A38D-4692-8D00-227B96625DC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7501E68C-A38D-4692-8D00-227B96625DC6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AE8E7C16-767C-46F8-8A66-2EF7783B9F34}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AE8E7C16-767C-46F8-8A66-2EF7783B9F34}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AE8E7C16-767C-46F8-8A66-2EF7783B9F34}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -45,10 +37,6 @@ Global
 		{D9CF0E43-0380-4DFE-A8FE-06243FF1F61E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D9CF0E43-0380-4DFE-A8FE-06243FF1F61E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D9CF0E43-0380-4DFE-A8FE-06243FF1F61E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BC10BC44-F52D-43CB-9BBF-4B7BA9468D40}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BC10BC44-F52D-43CB-9BBF-4B7BA9468D40}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BC10BC44-F52D-43CB-9BBF-4B7BA9468D40}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BC10BC44-F52D-43CB-9BBF-4B7BA9468D40}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0FFB6DC6-FF27-400E-AF0A-EB4ED5C2B153}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0FFB6DC6-FF27-400E-AF0A-EB4ED5C2B153}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0FFB6DC6-FF27-400E-AF0A-EB4ED5C2B153}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -58,11 +46,9 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{7501E68C-A38D-4692-8D00-227B96625DC6} = {E1F5E041-744D-4081-9C54-976FE6A0B8EE}
 		{AE8E7C16-767C-46F8-8A66-2EF7783B9F34} = {C2851E08-908D-4E87-BF8C-85432439228F}
 		{91318EEC-7BCE-4522-BE95-1C8347CC4D86} = {E623BB16-4B4C-4BD8-B4E0-89538DC9FE65}
 		{D9CF0E43-0380-4DFE-A8FE-06243FF1F61E} = {97FF91FF-143D-491F-8EF9-5242579ED943}
-		{BC10BC44-F52D-43CB-9BBF-4B7BA9468D40} = {E1F5E041-744D-4081-9C54-976FE6A0B8EE}
 		{0FFB6DC6-FF27-400E-AF0A-EB4ED5C2B153} = {E1F5E041-744D-4081-9C54-976FE6A0B8EE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
