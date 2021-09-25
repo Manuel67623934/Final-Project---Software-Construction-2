@@ -1,6 +1,7 @@
 ﻿@model WebModel
 
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,6 +23,7 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Inicio</a>
                         </li>
+<<<<<<< HEAD
                         @foreach (var item in Model.categoria_layout)
                         {
                             <li class="nav-item">
@@ -29,13 +31,28 @@
                             </li>
 
                         }
+=======
+                      
+>>>>>>> 5b2667911e8d6ffd2bb2f75b687baaf40077b699
 
 
 
                     </ul>
+                    <form class="d-flex" asp-controller="Usuario" asp-action="Login" method="post">
+
+                        <select name="select">
+                            <option value="1">Correo</option>
+                            <option value="2">Celular</option>
+                        </select>
+                        <button class="button" type="submit">
+                            Login
+                        </button>
+
+                    </form>
+                    
+                    
                     <form class="d-flex">
-                        <a class="btn btn-outline-success" asp-controller="Usuario" asp-action="Index">Login</a>
-                        <a class="btn btn-outline-success" asp-controller="Web" asp-action="Registro">Registro</a>
+                            <a class="btn btn-outline-success" asp-controller="Usuario" asp-action="Registration">Registro</a>
                     </form>
                 </div>
             </div>

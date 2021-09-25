@@ -1,0 +1,67 @@
+﻿
+@{
+    ViewData["Title"] = "Registro";
+}
+
+
+
+<head>
+    <link href="/css/EstiloGeneral.css" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/4b71027628.js" crossorigin="anonymous"></script>
+
+</head>
+
+
+<body>
+
+    <form class="formulario" asp-controller="Usuario" asp-action="Create" method="post">
+        <h1>Registrate </h1>
+
+        <div class="contenedor">
+
+            <div class="input-contenedor">
+                <i class="fas fa-user icon"></i>
+                <input type="text" class="form-control" name="nombre" placeholder="Nombre" required autofocus>
+            </div>
+
+            <div class="input-contenedor">
+                <i class="fas fa-user icon"></i>
+                <input type="text" class="form-control" name="apellido" placeholder="Apellido" required autofocus>
+            </div>
+
+            <div class="input-contenedor">
+                <i class="fas fa-user icon"></i>
+                <input type="text" class="form-control" name="dirección" placeholder="Dirección" required autofocus>
+            </div>
+
+            <div class="input-contenedor">
+                <i class="fas fa-user icon"></i>
+                <input type="text" class="form-control" name="referencia" placeholder="Referencia" required autofocus>
+            </div>
+
+            <div class="input-contenedor">
+                <i class="fas fa-user icon"></i>
+                <input type="text" class="form-control" name="celular" placeholder="Celular" required autofocus>
+            </div>
+
+            <div class="input-contenedor">
+                <i class="fas fa-user icon"></i>
+                <input type="text" class="form-control" name="correo" placeholder="Correo" required autofocus>
+            </div>
+
+            <div class="input-contenedor">
+                <i class="fas fa-key icon"></i>
+                <input type="password" class="form-control" name="contraseña" placeholder="Contraseña" required>
+            </div>
+
+            <button class="button" type="submit">
+                Registrarme
+            </button>
+            
+
+
+        </div>
+
+    </form>
+
+</body>

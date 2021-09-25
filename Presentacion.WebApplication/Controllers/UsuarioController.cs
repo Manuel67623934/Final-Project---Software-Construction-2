@@ -13,17 +13,39 @@ namespace Presentacion.WebApplication.Controllers
     public class UsuarioController : Controller
     {
         // GET: UsuarioController
-        public ActionResult Index()
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Login(int select)
+        {
+            TipoLoginModel tipoLogin = new TipoLoginModel();
+            tipoLogin.Id = select;
+
+            if (tipoLogin.Id == 1)
+            {
+                tipoLogin.tipoLoginNombre = "Login Correo";
+                return View(tipoLogin);
+            }
+            else
+            {
+                tipoLogin.tipoLoginNombre = "Login Celular";
+                return View(tipoLogin);
+            }
+
+        }
+
+
+        public ActionResult Registration()
         {
 
-            UsuarioModel modeloUsuario = new UsuarioModel()
-            {
-                usuarioModel = new UsuarioBL().getUsuarios()
-            };
-            
-            
-            return View(modeloUsuario);
+
+            return View();
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        
+
 
         // GET: UsuarioController/Details/5
         public ActionResult Details(int id)
@@ -32,23 +54,34 @@ namespace Presentacion.WebApplication.Controllers
         }
 
         // GET: UsuarioController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
+        
 
         // POST: UsuarioController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(string nombre, string apellido, string dirección, string referencia, string celular, string correo, string contraseña)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                
+                UsuarioBE usuarioTemporal = new UsuarioBE();
+                usuarioTemporal.Id = 1;
+                usuarioTemporal.FirtsName = nombre;
+                usuarioTemporal.LastsName = apellido;
+                usuarioTemporal.Address = dirección;
+                usuarioTemporal.Reference = referencia;
+                usuarioTemporal.NumberPhone = celular;
+                usuarioTemporal.User = correo;
+                usuarioTemporal.Password = contraseña;
+
+                UsuarioBL.addUsuarios(usuarioTemporal);
+
+
+                return View("../Usuario/Login");
             }
             catch
             {
-                return View();
+                return View("../Usuario/Login");
             }
         }
 
@@ -84,8 +117,7 @@ namespace Presentacion.WebApplication.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)
         {
-            bool f = false;
-            f = true;
+            
             try
             {
                 return RedirectToAction(nameof(Index));
@@ -105,17 +137,17 @@ namespace Presentacion.WebApplication.Controllers
         public ActionResult ValidarLogin(string usr, string pwd)
         {
 
-            bool loginExitoso = false;
+            bool loginExitoso;
             loginExitoso = UsuarioBL.validarUsuarioWithUser(usr, pwd);
 
             if (loginExitoso == true)
             {
-                return View("/Home/Index");
+                return View("../Home/Index");
                 
             }
             else
             {
-                return View();
+                return View("../Usuario/Login");
             }
             
         }
