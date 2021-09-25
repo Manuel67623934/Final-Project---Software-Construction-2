@@ -1,7 +1,5 @@
 ﻿@model WebModel
 
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,7 +21,7 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Inicio</a>
                         </li>
-                        @foreach (var item in Model.cate)
+                        @foreach (var item in Model.categoria_layout)
                         {
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Web" asp-action="Categoria">@item.Nombre</a>

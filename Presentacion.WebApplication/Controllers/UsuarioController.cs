@@ -18,8 +18,13 @@ namespace Presentacion.WebApplication.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Login(int select)
         {
-            TipoLoginModel tipoLogin = new TipoLoginModel();
-            tipoLogin.Id = select;
+            List<CategoriaBE> lista_categoria = new CategoriaBL().getCategorias();
+            WebModel tipoLogin = new WebModel() {
+                categoria_layout = lista_categoria,
+                Id = select
+            };
+            
+            
 
             if (tipoLogin.Id == 1)
             {
