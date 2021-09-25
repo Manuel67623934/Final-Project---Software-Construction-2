@@ -13,10 +13,25 @@ namespace Presentacion.WebApplication.Controllers
     public class UsuarioController : Controller
     {
         // GET: UsuarioController
-        public ActionResult Login()
-        {
 
-            return View();
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Login(int select)
+        {
+            TipoLoginModel tipoLogin = new TipoLoginModel();
+            tipoLogin.Id = select;
+
+            if (tipoLogin.Id == 1)
+            {
+                tipoLogin.tipoLoginNombre = "Login Correo";
+                return View(tipoLogin);
+            }
+            else
+            {
+                tipoLogin.tipoLoginNombre = "Login Celular";
+                return View(tipoLogin);
+            }
+
         }
 
 

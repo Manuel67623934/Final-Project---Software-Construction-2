@@ -1,8 +1,10 @@
-﻿
+﻿@model TipoLoginModel
 @{
 
     ViewData["Title"] = "Login";
-    
+    Layout = null;
+
+
 }
 
 
@@ -20,10 +22,21 @@
 
         <div class="contenedor">
 
-            <div class="input-contenedor">
-                <i class="fas fa-user icon"></i>
-                <input type="text" class="form-control" name="usr" placeholder="Correo" required autofocus>
-            </div>
+            @if (Model.Id == 1)
+            {
+                <div class="input-contenedor">
+                    <i class="fas fa-user icon"></i>
+                    <input type="text" class="form-control" name="usr" placeholder="Correo" required autofocus>
+                </div>
+            }
+            else
+            {
+                <div class="input-contenedor">
+                    <i class="fas fa-user icon"></i>
+                    <input type="text" class="form-control" name="usr" placeholder="Número de Celular" required autofocus>
+                </div>
+            }
+
 
             <div class="input-contenedor">
                 <i class="fas fa-key icon"></i>
@@ -34,7 +47,7 @@
                 Iniciar sesión
             </button>
             <p>Deseo ser cliente <a class="link" href="Registration">Registro</a></p>
-            
+
 
         </div>
 

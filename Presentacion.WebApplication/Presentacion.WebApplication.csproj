@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Models\TipoLogin.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Remove="Views\Usuario\Registro.cshtml" />
   </ItemGroup>
 

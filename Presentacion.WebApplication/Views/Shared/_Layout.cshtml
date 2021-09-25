@@ -1,5 +1,6 @@
 ﻿@model CategoriaModel 
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,9 +27,21 @@
 
 
                     </ul>
+                    <form class="d-flex" asp-controller="Usuario" asp-action="Login" method="post">
+
+                        <select name="select">
+                            <option value="1">Correo</option>
+                            <option value="2">Celular</option>
+                        </select>
+                        <button class="button" type="submit">
+                            Login
+                        </button>
+
+                    </form>
+                    
+                    
                     <form class="d-flex">
-                        <a class="btn btn-outline-success" asp-controller="Usuario" asp-action="Login">Login</a>
-                        <a class="btn btn-outline-success" asp-controller="Usuario" asp-action="Registration">Registro</a>
+                            <a class="btn btn-outline-success" asp-controller="Usuario" asp-action="Registration">Registro</a>
                     </form>
                 </div>
             </div>

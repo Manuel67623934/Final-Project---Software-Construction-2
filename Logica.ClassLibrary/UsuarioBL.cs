@@ -31,15 +31,31 @@ namespace Logica.ClassLibrary
 
         public static Boolean validarUsuarioWithUser(string usr, string pwd )
         {
-            UsuarioBE usuarioValidar = UsuarioDA.GetAll().FirstOrDefault(elegirUsuario => elegirUsuario.User == usr);
-            
-            if (usuarioValidar.Password == pwd)
+                        
+            try
             {
-                return true;
+                UsuarioBE usuarioValidar = UsuarioDA.GetAll().FirstOrDefault(elegirUsuario => elegirUsuario.User == usr);
+                if (usuarioValidar.Password == pwd)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
             }
-            else
+            catch
             {
-                return false;
+                UsuarioBE usuarioValidar = UsuarioDA.GetAll().FirstOrDefault(elegirUsuario => elegirUsuario.NumberPhone == usr);
+                if (usuarioValidar.Password == pwd)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
 
         } 

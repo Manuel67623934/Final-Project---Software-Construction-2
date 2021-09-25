@@ -11,5 +11,11 @@ namespace Presentacion.WebApplication.Models
         public List<CategoriaBE> cate { get; set; }
         public List<ProductoBE> prod { get; set; }
         public string prueba { get; set; }
+
+        //tipoLogin
+        public int Id { get; set; }
+        public string tipoLogin { get; set; }
+
+
     }
 }
