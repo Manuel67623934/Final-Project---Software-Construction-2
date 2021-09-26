@@ -42,9 +42,11 @@ namespace Presentacion.WebApplication.Controllers
 
         public ActionResult Registration()
         {
-
-
-            return View();
+            List<CategoriaBE> lista_categoria = new CategoriaBL().getCategorias();
+            WebModel model = new WebModel() {
+                categoria_layout = lista_categoria
+            };
+            return View(model);
         }
 
         [HttpPost]
