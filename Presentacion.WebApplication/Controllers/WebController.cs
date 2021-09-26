@@ -16,10 +16,13 @@ namespace Presentacion.WebApplication.Controllers
             ProductoBL p = new ProductoBL();
             ProductoBE producto = p.getProducto(Url_Seo);
             List<CategoriaBE> lista_categoria = new CategoriaBL().getCategorias();
+            CategoriaBE cate = new CategoriaBL().ObtenerCategoriaProducto(Url_Seo);
             WebModel model_producto = new WebModel()
             {
                 producto_solo = producto,
-                categoria_layout= lista_categoria
+                categoria_layout = lista_categoria,
+                categoria = cate,
+                           
             };
 
             return View(model_producto);
@@ -40,9 +43,8 @@ namespace Presentacion.WebApplication.Controllers
             {
                 prod = lista_producto,
                 categoria = cate,
-                categoria_layout=  lista_categoria
-                
-               
+                categoria_layout=  lista_categoria               
+         
             };
             
           
