@@ -23,6 +23,8 @@ namespace Entidad.ClassLibrary
         public char portada { get; set; }
         [Required]
         public double Precio { get; set; }
+        [Required]
+        public string imagen { get; set; }
 
     }
 }

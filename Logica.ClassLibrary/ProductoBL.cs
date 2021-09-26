@@ -45,7 +45,8 @@ namespace Logica.ClassLibrary
                     product.Descripcion = lista[i].Descripcion;
                     product.Precio = lista[i].Precio;
                     product.Stock = lista[i].Stock;
-                    product.UrlSeo = lista[i].UrlSeo;                    
+                    product.UrlSeo = lista[i].UrlSeo;
+                    product.imagen = lista[i].imagen;
                 }
             }
             return product;
