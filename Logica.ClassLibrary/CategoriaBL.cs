@@ -72,5 +72,20 @@ namespace Logica.ClassLibrary
 
             return temp;
         }
+        public CategoriaBE ObtenerCategoriaProducto (string Url_Seo)
+        {
+            CategoriaBE cate = new CategoriaBE();
+            List<CategoriaBE> lista_categoria = new CategoriaBL().getCategorias();
+            ProductoBE producto = new ProductoBL().getProducto(Url_Seo);
+            for (int i = 0; i < lista_categoria.Count; i++)
+            {
+                if (lista_categoria[i].Id.Equals(producto.id_categoria))
+                {
+                    cate = lista_categoria[i];
+                }
+            }
+            return cate;
+
+        }
     }
 }
