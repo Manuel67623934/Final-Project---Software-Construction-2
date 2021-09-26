@@ -17,7 +17,7 @@ namespace Presentacion.WebApplication.Controllers
         public ActionResult Index()
         {
             UsuarioModel usuarioLogeado = new UsuarioModel();
-            usuarioLogeado = UsuarioBL.GetUserUnic(1);
+           
 
 
             
