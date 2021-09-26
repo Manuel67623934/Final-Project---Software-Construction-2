@@ -9,5 +9,6 @@ namespace Presentacion.WebApplication.Models
     public class UsuarioModel
     {
         public List<UsuarioBE> usuarioModel { get; set;}
+        public UsuarioBE usuarioLogeado { get; set; }
     }
 }

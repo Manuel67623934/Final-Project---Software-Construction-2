@@ -31,6 +31,13 @@ namespace Dato.ClassLibrary
             return ListaUsuarios;
         }
 
+        public static UsuarioBE GetUserUnic(int id)
+        {
+           UsuarioBE usuarioRecuperar = ListaUsuarios.FirstOrDefault(elegirUsuario => elegirUsuario.Id == id);
+            return usuarioRecuperar;
+        }
+
+
         public static void Add(UsuarioBE usuario)
         {
             //usuario.Id = nextId++;

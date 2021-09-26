@@ -25,6 +25,8 @@ namespace Presentacion.WebApplication.Controllers
                            
             };
 
+            
+
             return View(model_producto);
         }
         public ActionResult Login()
@@ -39,15 +41,18 @@ namespace Presentacion.WebApplication.Controllers
             List<CategoriaBE> lista_categoria = new CategoriaBL().getCategorias();
             List<ProductoBE> lista_producto = categoria.GetProductos(Url_Seo);
             CategoriaBE cate = new CategoriaBL().ObtenerCategoria(Url_Seo);
+
             WebModel model = new WebModel()
             {
                 prod = lista_producto,
                 categoria = cate,
-                categoria_layout=  lista_categoria               
-         
+                categoria_layout = lista_categoria,
+
+                LoginCorrecto =1
+
+
             };
-            
-          
+
 
             return View(model) ;
         }

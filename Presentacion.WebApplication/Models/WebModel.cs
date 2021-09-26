@@ -15,5 +15,7 @@ namespace Presentacion.WebApplication.Models
         public string prueba { get; set; }
         public int Id { get; set; }
         public string tipoLoginNombre { get; set; }
+
+        public int LoginCorrecto { get; set; }
     }
 }
