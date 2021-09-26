@@ -17,6 +17,14 @@ namespace Logica.ClassLibrary
             return dataUsuarios = UsuarioDA.GetAll();
         }
 
+
+        public static UsuarioBE GetUserUnic(int id)
+        {
+            UsuarioBE usuarioRecuperar = UsuarioDA.GetUserUnic(id);
+            return usuarioRecuperar;
+        }
+
+
         public static void addUsuarios(UsuarioBE usuario)
         {
             usuario.Id = nextId++;
@@ -29,35 +37,56 @@ namespace Logica.ClassLibrary
             UsuarioDA.Delete(usuarioEliminar);
         }
 
-        public static Boolean validarUsuarioWithUser(string usr, string pwd )
+        public static bool validarUser(string usr, string pwd )
         {
-                        
-            try
-            {
-                UsuarioBE usuarioValidar = UsuarioDA.GetAll().FirstOrDefault(elegirUsuario => elegirUsuario.User == usr);
-                if (usuarioValidar.Password == pwd)
+                bool validacionCorrecta = false;
+                UsuarioBE userValidar = UsuarioDA.GetAll().FirstOrDefault(elegirUsuario => elegirUsuario.User == usr);
+                if (userValidar== null)
                 {
-                    return true;
+                    return validacionCorrecta;
                 }
                 else
                 {
-                    return false;
+                    if (userValidar.Password == pwd)
+                    {
+                        return validacionCorrecta = true;
+                    }
+                    else
+                    {
+                        return validacionCorrecta;
+                    }
                 }
 
-            }
-            catch
+            
+            
+        }
+
+
+        public static bool validarPhone(string phone, string pwd)
+        {
+            bool validacionCorrecta = false;
+            UsuarioBE phoneValidar = UsuarioDA.GetAll().FirstOrDefault(elegirUsuario => elegirUsuario.User == phone);
+
+            if (phoneValidar == null)
             {
-                UsuarioBE usuarioValidar = UsuarioDA.GetAll().FirstOrDefault(elegirUsuario => elegirUsuario.NumberPhone == usr);
-                if (usuarioValidar.Password == pwd)
+                return validacionCorrecta;
+            }
+            else
+            {
+                if (phoneValidar.Password == pwd)
                 {
-                    return true;
+                    return validacionCorrecta = true;
                 }
                 else
                 {
-                    return false;
+                    return validacionCorrecta;
                 }
             }
 
-        } 
+
+        }
+
+
+
     }
 }

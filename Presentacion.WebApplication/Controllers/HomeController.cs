@@ -13,6 +13,10 @@ namespace Presentacion.WebApplication.Controllers
 {
     public class HomeController : Controller
     {
+        WebModel model = new WebModel();
+
+
+
         private readonly ILogger<HomeController> _logger;
 
         public HomeController(ILogger<HomeController> logger)
@@ -22,15 +26,11 @@ namespace Presentacion.WebApplication.Controllers
 
         public IActionResult Index()
         {
-          List<CategoriaBE> categoria = new CategoriaBL().getCategorias();
+            List<CategoriaBE> categoria = new CategoriaBL().getCategorias();
             List<ProductoBE> producto = new ProductoBL().GetProductos();
-            WebModel model = new WebModel()
-            {
-                prod = producto,
-               categoria_layout = categoria,
-                prueba = "holamundo"
-        };
-                      
+            model.prod = producto;
+            model.categoria_layout = categoria;
+                                  
             return View (model);
         }
 

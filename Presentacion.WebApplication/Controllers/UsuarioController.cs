@@ -14,15 +14,15 @@ namespace Presentacion.WebApplication.Controllers
     {
         // GET: UsuarioController
 
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Login(int select)
         {
             List<CategoriaBE> lista_categoria = new CategoriaBL().getCategorias();
-            WebModel tipoLogin = new WebModel() {
-                categoria_layout = lista_categoria,
-                Id = select
-            };
+            WebModel tipoLogin = new WebModel();
+            tipoLogin.categoria_layout = lista_categoria;
+            tipoLogin.Id = select;
             
             
 
@@ -139,23 +139,41 @@ namespace Presentacion.WebApplication.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult ValidarLogin(string usr, string pwd)
+        public ActionResult ValidarLogin(string usr = "indefinido", string phone = "indefinido", string pwd="passs")
         {
 
-            bool loginExitoso;
-            loginExitoso = UsuarioBL.validarUsuarioWithUser(usr, pwd);
-
-            if (loginExitoso == true)
+            List<CategoriaBE> categoria = new CategoriaBL().getCategorias();
+            List<ProductoBE> producto = new ProductoBL().GetProductos();
+            WebModel model = new WebModel()
             {
-                return View("../Home/Index");
-                
+                prod = producto,
+                categoria_layout = categoria,
+                prueba = "holamundo",
+                LoginCorrecto = 1,
+                Id = 1
+            };
+
+
+            bool loginExitosoUser = false;
+            bool loginExitosoPhone = false;
+            
+            if (usr == "indefinido")
+            {
+                loginExitosoPhone = UsuarioBL.validarPhone(phone, pwd);
+            }
+            if(phone == "indefinido")
+            {
+                loginExitosoUser = UsuarioBL.validarUser(usr, pwd);
+            }
+            if (loginExitosoUser == true || loginExitosoPhone == true)
+            {
+                return View("../Home/Index", model);                
             }
             else
             {
-                return View("../Usuario/Login");
+                return View("../Usuario/Login", model);
             }
-            
-        }
 
+        }
     }
 }

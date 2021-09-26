@@ -29,26 +29,33 @@
 
                         }
 
-
-
-
                     </ul>
-                    <form class="d-flex" asp-controller="Usuario" asp-action="Login" method="post">
 
-                        <select name="select">
-                            <option value="1">Correo</option>
-                            <option value="2">Celular</option>
-                        </select>
-                        <button class="button" type="submit">
-                            Login
-                        </button>
+                    @if (Model.LoginCorrecto != 1)
+                    {
+                        <form class="d-flex" asp-controller="Usuario" asp-action="Login" method="post">
 
-                    </form>
-                    
-                    
-                    <form class="d-flex">
+                            <select name="select">
+                                <option value="1">Correo</option>
+                                <option value="2">Celular</option>
+                            </select>
+                            <button class="btn btn-outline-success" type="submit">
+                                Iniciar Sesión
+                            </button>
+
+                        </form>
+
+                        <form class="d-flex">
                             <a class="btn btn-outline-success" asp-controller="Usuario" asp-action="Registration">Registro</a>
+                        </form>
+
+                    }
+
+                    <form class="d-flex">
+                        <a class="btn btn-outline-success" asp-controller="CarritoCompra" asp-action="Index">Ver Carrito</a>
                     </form>
+
+
                 </div>
             </div>
         </nav>

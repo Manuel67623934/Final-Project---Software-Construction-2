@@ -55,6 +55,9 @@ namespace Presentacion.WebApplication
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            Rotativa.AspNetCore.RotativaConfiguration.Setup(env.WebRootPath,"../CarritoPDF");
+
         }
     }
 }
