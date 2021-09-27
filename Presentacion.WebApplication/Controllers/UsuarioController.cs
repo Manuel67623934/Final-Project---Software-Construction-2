@@ -42,9 +42,12 @@ namespace Presentacion.WebApplication.Controllers
 
         public ActionResult Registration()
         {
+            List<CategoriaBE> lista_categoria = new CategoriaBL().getCategorias();
+            WebModel tipoLogin = new WebModel();
+            tipoLogin.categoria_layout = lista_categoria;
+            
 
-
-            return View();
+            return View(tipoLogin);
         }
 
         [HttpPost]
@@ -66,6 +69,13 @@ namespace Presentacion.WebApplication.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(string nombre, string apellido, string dirección, string referencia, string celular, string correo, string contraseña)
         {
+            WebModel model = new WebModel();
+            List<CategoriaBE> categoria = new CategoriaBL().getCategorias();
+            List<ProductoBE> producto = new ProductoBL().GetProductos();
+            model.prod = producto;
+            model.categoria_layout = categoria;
+
+
             try
             {
                 
@@ -82,11 +92,11 @@ namespace Presentacion.WebApplication.Controllers
                 UsuarioBL.addUsuarios(usuarioTemporal);
 
 
-                return View("../Usuario/Login");
+                return View("../Home/Index", model);
             }
             catch
             {
-                return View("../Usuario/Login");
+                return View("../Home/Index", model);
             }
         }
 

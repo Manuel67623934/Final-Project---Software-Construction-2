@@ -13,7 +13,7 @@ namespace Presentacion.WebApplication.Controllers
 {
     public class HomeController : Controller
     {
-        WebModel model = new WebModel();
+        
 
 
 
@@ -26,6 +26,7 @@ namespace Presentacion.WebApplication.Controllers
 
         public IActionResult Index()
         {
+            WebModel model = new WebModel();
             List<CategoriaBE> categoria = new CategoriaBL().getCategorias();
             List<ProductoBE> producto = new ProductoBL().GetProductos();
             model.prod = producto;
