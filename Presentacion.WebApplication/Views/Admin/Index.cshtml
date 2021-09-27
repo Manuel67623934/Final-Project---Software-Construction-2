@@ -1,0 +1,17 @@
+﻿@model AdminModel
+@{
+Layout =null;
+}
+@if (Model.mensaje.Equals("entregado"))
+{
+    <label>@Model.mensaje</label>
+    <a class="btn btn-dark">Enviar Whatsapp</a>
+}
+else
+{
+<form action="Admin/EnviarMensaje" method="post">
+    <input type="text" name="mensaje" value="" />
+    <button  class="btn btn-outline-light"type="submit"> Enviar whatsapp</button>
+</form>
+
+}
