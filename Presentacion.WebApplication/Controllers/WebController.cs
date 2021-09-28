@@ -49,7 +49,7 @@ namespace Presentacion.WebApplication.Controllers
                 categoria = cate,
                 categoria_layout = lista_categoria,
                 enSession = 1,
-                usuario = UsuarioBL.GetUserUnic()
+                //usuario = UsuarioBL.GetUserUnic()
                 
             };
             return View(model) ;
