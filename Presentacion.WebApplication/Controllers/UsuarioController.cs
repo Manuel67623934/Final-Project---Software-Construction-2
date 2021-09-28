@@ -25,6 +25,7 @@ namespace Presentacion.WebApplication.Controllers
             model.categoria_layout = lista_categoria;
             model.tipoLogin = seleccion;
             model.enSession = 0;
+            model.usuario = UsuarioBL.BuscarUsuarioSessionActiva();
             
 
             if (model.tipoLogin == 1)
@@ -166,8 +167,9 @@ namespace Presentacion.WebApplication.Controllers
 
             if (loginCorreto == 1)
             {
-                int idUser = UsuarioBL.GetId(usr);
+                int idUser = UsuarioBL.GetId(usr, phone);
                 UsuarioBL.abrirSesion(idUser);
+                UsuarioBL.cerrarSession(0);
                 model.loginCorrecto = 1;
 
                 model.usuario = UsuarioBL.GetUserUnic(idUser);               

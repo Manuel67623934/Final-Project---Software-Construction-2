@@ -18,11 +18,21 @@ namespace Logica.ClassLibrary
         }
 
 
-        public static int GetId(string usr)
+        public static int GetId(string usr, string phone)
         {
             int userId = 0;
             UsuarioBE usuario = UsuarioDA.GetAll().FirstOrDefault(elegirUsuario => elegirUsuario.User == usr);
-            return userId = usuario.Id;
+
+            if (usuario == null)
+            {
+                UsuarioBE usuario1 = UsuarioDA.GetAll().FirstOrDefault(elegirUsuario => elegirUsuario.NumberPhone == phone);
+                return userId = usuario1.Id;
+            }
+            else
+            {
+                return userId = usuario.Id;
+            }
+            
         }
 
 
@@ -74,7 +84,7 @@ namespace Logica.ClassLibrary
         public static bool validarPhone(string phone, string pwd)
         {
             bool validacionCorrecta = false;
-            UsuarioBE phoneValidar = UsuarioDA.GetAll().FirstOrDefault(elegirUsuario => elegirUsuario.User == phone);
+            UsuarioBE phoneValidar = UsuarioDA.GetAll().FirstOrDefault(elegirUsuario => elegirUsuario.NumberPhone == phone);
 
             if (phoneValidar == null)
             {

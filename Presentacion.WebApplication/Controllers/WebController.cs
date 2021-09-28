@@ -22,6 +22,7 @@ namespace Presentacion.WebApplication.Controllers
                 producto_solo = producto,
                 categoria_layout = lista_categoria,
                 categoria = cate,
+                //usuario = UsuarioBL.BuscarUsuarioSessionActiva()
                            
             };
 

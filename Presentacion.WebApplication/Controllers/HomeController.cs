@@ -45,6 +45,7 @@ namespace Presentacion.WebApplication.Controllers
             else
             {
                 UsuarioBL.cerrarSession(seleccion);
+                UsuarioBL.abrirSesion(0);
                 model.enSession = UsuarioBL.verificarSession(seleccion);
                 return View(model);
             }
