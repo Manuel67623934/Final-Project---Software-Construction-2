@@ -16,12 +16,13 @@ namespace Presentacion.WebApplication.Controllers
         // GET: CarritoCompra
         public ActionResult Index()
         {
-            UsuarioModel usuarioLogeado = new UsuarioModel();
-           
+            WebModel model = new WebModel()
+            {
+                usuario = UsuarioBL.GetUserUnic(0)
+            };
 
 
-            
-            return View("Index");
+            return View("Index", model);
         }
 
         // GET: CarritoCompra/Details/5

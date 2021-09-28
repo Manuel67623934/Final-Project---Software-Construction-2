@@ -1,4 +1,4 @@
-﻿
+﻿@model WebModel
 @{
     ViewData["Title"] = "Carrito";
     Layout = null;
@@ -42,12 +42,12 @@
             </div>
             <div class="container" id="datosPRoveedor">
                 <div class="col-xs-12 col-md-12">
-                    <h4>Datos del proveedor</h4>
-                    <p id="nombre_proveedor">Nombre: Jorge Alejandro Friias Salceda</p>
-                    <p id="rfc">RFC: OJNFT7889TR</p>
-                    <p id="telefono">Telefono: 4521011057</p>
-                    <p id="email">Email: alejan11@hotmail.com</p>
-
+                    <h4>Datos del Cliente</h4>
+                    <p>Manuel</p>
+                    <p>Bravo</p>
+                    <p>Jr. San Mateo #456</p>
+                    <p>Al lado de Comercial R&R</p>
+                    <p>987564794</p>
                 </div>
             </div>
         </header>
@@ -59,28 +59,28 @@
                         <thead>
                             <tr>
                                 <th>#id</th>
-                                <th>Material</th>
-                                <th>Total kg</th>
-                                <th>Precio x kg</th>
-                                <th>Total</th>
+                                <th>Producto</th>
+                                <th>Cantidad</th>
+                                <th>Precio Unitario</th>
+                                <th>Subtotal</th>
                                 <td>Eliminar</td>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>1</td>
-                                <td>Cobre</td>
+                                <td>23</td>
+                                <td>Cerveza Budweiser</td>
                                 <td>20.5</td>
-                                <td>60</td>
-                                <td>$ 130</td>
+                                <td>2</td>
+                                <td>41.00</td>
                                 <td><button type="button" class="btn btn-danger">Remover</button></td>
                             </tr>
                             <tr>
-                                <td>2</td>
-                                <td>Fierro</td>
-                                <td>150</td>
-                                <td>2.5</td>
-                                <td>$ 375</td>
+                                <td>24</td>
+                                <td>Papas Lays</td>
+                                <td>1</td>
+                                <td>22.50</td>
+                                <td>22.50</td>
                                 <td><button type="button" class="btn btn-danger">Remover</button></td>
                             </tr>
 
@@ -103,32 +103,13 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td>$ 505</td>
+                                <td>S/. ###</td>
                             </tr>
                         </tbody>
                     </table>
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>Observaciones</th>
-
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Motores y laminas</td>
-                            </tr>
-                            <tr>
-                                <td>Mas obersvaciones</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    
                 </div>
-                <div class="col-xs-offset-4 col-xs-3  ">
-                    <p style="text-align: center;">Sello</p>
-                    <p id="sello"></p>
-                    <h6>Para observaciones marcar al 5287270.</h6>
-                </div>
+               
             </div>
         </footer>
 
@@ -136,44 +117,22 @@
             <div class="container" id="altaItems">
                 <div class="col-xs-8 col-md-8">
                     <table class="table table-striped">
-                        <thead>
-                            <tr>
 
-                                <th>#id</th>
-                                <th>Material</th>
-                                <th>Total kg</th>
-                                <th>Precio x kg</th>
-                                <th>Total</th>
-                                <th>Agregar</th>
-                            </tr>
-                        </thead>
                         <tbody>
-                            <tr>
-                                <td>3</td>
-                                <td>
-                                    <input list="dataListProveedores"
-                                           id="busquedaProveedor"> <datalist id="dataListProveedores">
-                                    </datalist>
-                                </td>
-                                <td>20.5</td>
-                                <td>60</td>
-                                <td>$ 130</td>
-                                <td>
-                                    <button id="botonAgregarItem" type="button" class="btn btn-success">
-                                        Agregar
-                                        a la orden
-                                    </button>
-                                </td>
-                            </tr>
                         </tbody>
                     </table>
                 </div>
-                <div class="col-xs-4 col-md-4 corrigeBotonGuardado">
+                
 
-                    <button type="button" id="botonGuardar" class="col-xs-offset-4 btn btn-success">
-                        Guardar
-                        Orden
-                    </button>
+                <div>
+                    <form class="d-flex">
+                        <a class="btn btn-outline-success" asp-controller="home" asp-action="Index">Seguir Comprando</a>
+                    </form>
+                </div>
+                <div>
+                    <form class="d-flex">
+                        <a class="btn btn-outline-success" asp-controller="CarritoCompra" asp-action="CrearPDF">Confirmar Compra</a>
+                    </form>
                 </div>
             </div>
         </footer>
@@ -191,6 +150,3 @@
 
 
 
-<form class="d-flex">
-    <a class="btn btn-outline-success" asp-controller="CarritoCompra" asp-action="CrearPDF">Confirmar Compra</a>
-</form>

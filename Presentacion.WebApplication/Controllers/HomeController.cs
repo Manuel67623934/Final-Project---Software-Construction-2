@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 
 namespace Presentacion.WebApplication.Controllers
 {
@@ -24,15 +25,30 @@ namespace Presentacion.WebApplication.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(int seleccion = 0)
         {
+            
+            
             WebModel model = new WebModel();
             List<CategoriaBE> categoria = new CategoriaBL().getCategorias();
             List<ProductoBE> producto = new ProductoBL().GetProductos();
             model.prod = producto;
             model.categoria_layout = categoria;
-                                  
-            return View (model);
+
+                                   
+            if(seleccion == 1)
+            {
+                model.enSession = 1;               
+                return View ("../CarritoCompra/Index");
+            }
+            else
+            {
+                UsuarioBL.cerrarSession(seleccion);
+                model.enSession = UsuarioBL.verificarSession(seleccion);
+                return View(model);
+            }
+
+
         }
 
         public IActionResult Privacy()

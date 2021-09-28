@@ -26,5 +26,6 @@ namespace Entidad.ClassLibrary
         public string Address { get; set; }
         [Required]
         public string Reference { get; set; }
+        public int Session { get; set; }
     }
 }

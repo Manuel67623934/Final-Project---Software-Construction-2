@@ -2,7 +2,8 @@
 @{
 
     ViewData["Title"] = "Login";
-    
+
+
 }
 
 
@@ -15,41 +16,54 @@
 
 <body>
 
+
+    
+    
+
+
     <form class="formulario" asp-controller="Usuario" asp-action="ValidarLogin" method="post">
-        <h1>Iniciar Sesión  </h1>
 
-        <div class="contenedor">
-
-            @if (Model.Id == 1)
+        @if (Model.enSession == 0)
             {
-                <div class="input-contenedor">
-                    <i class="fas fa-user icon"></i>
-                    <input type="text" class="form-control" name="usr" placeholder="Correo" required autofocus>
-                </div>
-            }
-            else
-            {
-                <div class="input-contenedor">
-                    <i class="fas fa-user icon"></i>
-                    <input type="text" class="form-control" name="phone" placeholder="Número de Celular" required autofocus>
-                </div>
+                    <p>Las Credenciales no está Registradas</p>
             }
 
 
-            <div class="input-contenedor">
-                <i class="fas fa-key icon"></i>
-                <input type="password" class="form-control" name="pwd" placeholder="Contraseña" required>
+
+            <h1>Iniciar Sesión  </h1>
+
+            <div class="contenedor">
+
+                @if (Model.tipoLogin == 1)
+                {
+                    <div class="input-contenedor">
+                        <i class="fas fa-user icon"></i>
+                        <input type="text" class="form-control" name="usr" placeholder="Correo" required autofocus>
+                    </div>
+                }
+                else
+                {
+                    <div class="input-contenedor">
+                        <i class="fas fa-user icon"></i>
+                        <input type="text" class="form-control" name="phone" placeholder="Número de Celular" required autofocus>
+                    </div>
+                }
+
+
+                <div class="input-contenedor">
+                    <i class="fas fa-key icon"></i>
+                    <input type="password" class="form-control" name="pwd" placeholder="Contraseña" required>
+                </div>
+
+                <button class="button" type="submit">
+                    Iniciar sesión
+                </button>
+                <p>Deseo ser cliente <a class="link" href="Registration">Registro</a></p>
+
+
             </div>
 
-            <button class="button" type="submit">
-                Iniciar sesión
-            </button>
-            <p>Deseo ser cliente <a class="link" href="Registration">Registro</a></p>
-
-
-        </div>
-
-    </form>
+        </form>
 
 </body>
 

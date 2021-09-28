@@ -17,24 +17,24 @@ namespace Presentacion.WebApplication.Controllers
         
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Login(int select)
+        public ActionResult Login(int seleccion)
         {
             List<CategoriaBE> lista_categoria = new CategoriaBL().getCategorias();
-            WebModel tipoLogin = new WebModel();
-            tipoLogin.categoria_layout = lista_categoria;
-            tipoLogin.Id = select;
-            
+            WebModel model = new WebModel();
+            model.categoria_layout = lista_categoria;
+            model.tipoLogin = seleccion;
+            model.enSession = 0;
             
 
-            if (tipoLogin.Id == 1)
+            if (model.tipoLogin == 1)
             {
-                tipoLogin.tipoLoginNombre = "Login Correo";
-                return View(tipoLogin);
+                model.tipoLoginNombre = "Login Correo";
+                return View(model);
             }
             else
             {
-                tipoLogin.tipoLoginNombre = "Login Celular";
-                return View(tipoLogin);
+                model.tipoLoginNombre = "Login Celular";
+                return View(model);
             }
 
         }
@@ -69,6 +69,7 @@ namespace Presentacion.WebApplication.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(string nombre, string apellido, string dirección, string referencia, string celular, string correo, string contraseña)
         {
+
             WebModel model = new WebModel();
             List<CategoriaBE> categoria = new CategoriaBL().getCategorias();
             List<ProductoBE> producto = new ProductoBL().GetProductos();
@@ -149,40 +150,37 @@ namespace Presentacion.WebApplication.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult ValidarLogin(string usr = "indefinido", string phone = "indefinido", string pwd="passs")
+        public ActionResult ValidarLogin(string usr= "indefinido", string phone ="indefinido", string pwd ="indefinido")
         {
 
+            WebModel model = new WebModel();
             List<CategoriaBE> categoria = new CategoriaBL().getCategorias();
             List<ProductoBE> producto = new ProductoBL().GetProductos();
-            WebModel model = new WebModel()
-            {
-                prod = producto,
-                categoria_layout = categoria,
-                prueba = "holamundo",
-                LoginCorrecto = 1,
-                Id = 1
-            };
+            model.prod = producto;
+            model.categoria_layout = categoria;
 
 
-            bool loginExitosoUser = false;
-            bool loginExitosoPhone = false;
-            
-            if (usr == "indefinido")
+            int loginCorreto = UsuarioBL.loginCorrecto(usr, phone, pwd);            
+           
+
+            if (loginCorreto == 1)
             {
-                loginExitosoPhone = UsuarioBL.validarPhone(phone, pwd);
-            }
-            if(phone == "indefinido")
-            {
-                loginExitosoUser = UsuarioBL.validarUser(usr, pwd);
-            }
-            if (loginExitosoUser == true || loginExitosoPhone == true)
-            {
-                return View("../Home/Index", model);                
+                int idUser = UsuarioBL.GetId(usr);
+                UsuarioBL.abrirSesion(idUser);                
+                
+                model.usuario = UsuarioBL.GetUserUnic(idUser);               
+                model.enSession = UsuarioBL.verificarSession(idUser);
+                
+                
+                return View("../Home/Index", model);
             }
             else
             {
+                model.enSession = 0;
                 return View("../Usuario/Login", model);
             }
+
+            
 
         }
     }

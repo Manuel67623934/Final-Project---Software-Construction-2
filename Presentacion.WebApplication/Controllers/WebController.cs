@@ -42,18 +42,16 @@ namespace Presentacion.WebApplication.Controllers
             List<ProductoBE> lista_producto = categoria.GetProductos(Url_Seo);
             CategoriaBE cate = new CategoriaBL().ObtenerCategoria(Url_Seo);
 
+
             WebModel model = new WebModel()
             {
                 prod = lista_producto,
                 categoria = cate,
                 categoria_layout = lista_categoria,
-
-                LoginCorrecto =1
-
-
+                enSession = 1,
+                usuario = UsuarioBL.GetUserUnic()
+                
             };
-
-
             return View(model) ;
         }
        

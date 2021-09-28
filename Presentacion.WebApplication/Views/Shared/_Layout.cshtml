@@ -22,19 +22,20 @@
                         </li>
                         @foreach (var item in Model.categoria_layout)
                         {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Web" asp-action="Categoria" asp-route-Url_Seo=@item.UrlSeo>@item.Nombre</a>
-                            </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Web" asp-action="Categoria" asp-route-Url_Seo=@item.UrlSeo>@item.Nombre </a>
+                    </li>
+
 
                         }
 
                     </ul>
 
-                    @if (Model.LoginCorrecto != 1)
+                    @if (Model.enSession == 0)
                     {
                         <form class="d-flex" asp-controller="Usuario" asp-action="Login" method="post">
 
-                            <select name="select">
+                            <select name="seleccion">
                                 <option value="1">Correo</option>
                                 <option value="2">Celular</option>
                             </select>
@@ -47,12 +48,32 @@
                         <form class="d-flex">
                             <a class="btn btn-outline-success" asp-controller="Usuario" asp-action="Registration">Registro</a>
                         </form>
+                    }
+
+                    @if (Model.enSession == 1)
+                    {
+
+                <form class="d-flex" asp-controller="Home" asp-action="Index" method="post">
+
+                    <select name="seleccion">
+                        <option value=@Convert.ToString(Model.usuario.Id)>Cerrar Session</option>
+                        <option value="1">Ver Carrito</option>s
+                    </select>
+                    <button class="btn btn-outline-success" type="submit">
+                        Ir
+                    </button>
+
+                </form>
+                        <button class="btn btn-outline-success" type="submit">
+                            Hola @Model.usuario.FirtsName
+                        </button>
 
                     }
 
-                    <form class="d-flex">
-                        <a class="btn btn-outline-success" asp-controller="CarritoCompra" asp-action="Index">Ver Carrito</a>
-                    </form>
+
+
+
+
 
 
                 </div>
