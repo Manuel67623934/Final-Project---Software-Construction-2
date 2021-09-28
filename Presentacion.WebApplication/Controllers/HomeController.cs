@@ -34,7 +34,8 @@ namespace Presentacion.WebApplication.Controllers
             List<ProductoBE> producto = new ProductoBL().GetProductos();
             model.prod = producto;
             model.categoria_layout = categoria;
-
+            model.enSession = 0;
+            model.usuario = UsuarioBL.BuscarUsuarioSessionActiva();
                                    
             if(seleccion == 1)
             {

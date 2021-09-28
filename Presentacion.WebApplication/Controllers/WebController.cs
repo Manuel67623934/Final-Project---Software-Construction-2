@@ -43,13 +43,15 @@ namespace Presentacion.WebApplication.Controllers
             CategoriaBE cate = new CategoriaBL().ObtenerCategoria(Url_Seo);
 
 
+
+
             WebModel model = new WebModel()
             {
                 prod = lista_producto,
                 categoria = cate,
                 categoria_layout = lista_categoria,
                 enSession = 1,
-                //usuario = UsuarioBL.GetUserUnic()
+                usuario = UsuarioBL.BuscarUsuarioSessionActiva()
                 
             };
             return View(model) ;

@@ -157,8 +157,26 @@ namespace Logica.ClassLibrary
         }
 
 
+        public static UsuarioBE BuscarUsuarioSessionActiva()
+        {
+            UsuarioBE usuarioEnSession= new UsuarioBE();
+            foreach (var item in UsuarioDA.GetAll())
+            {
+                if (item.Id==1)
+                {
+                    usuarioEnSession = item;                    
+                    break;
+                }
+                else
+                {
+                    usuarioEnSession = UsuarioDA.GetUserUnic(0);
+                    break;
+                }
+            }
+            return usuarioEnSession;
+        }
+        
 
-
-
+       
     }
 }

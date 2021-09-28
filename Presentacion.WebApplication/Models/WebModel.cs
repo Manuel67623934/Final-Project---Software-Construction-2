@@ -21,5 +21,6 @@ namespace Presentacion.WebApplication.Models
         public UsuarioBE usuario{ get; set; }
 
         public int idUsuario { get; set; }
+        public int loginCorrecto { get; set; }
     }
 }

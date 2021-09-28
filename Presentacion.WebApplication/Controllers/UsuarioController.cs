@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Entidad.ClassLibrary;
 using Logica.ClassLibrary;
 using Presentacion.WebApplication.Models;
+using System.Security.Claims;
 
 namespace Presentacion.WebApplication.Controllers
 {
@@ -166,17 +167,20 @@ namespace Presentacion.WebApplication.Controllers
             if (loginCorreto == 1)
             {
                 int idUser = UsuarioBL.GetId(usr);
-                UsuarioBL.abrirSesion(idUser);                
-                
+                UsuarioBL.abrirSesion(idUser);
+                model.loginCorrecto = 1;
+
                 model.usuario = UsuarioBL.GetUserUnic(idUser);               
                 model.enSession = UsuarioBL.verificarSession(idUser);
-                
+
+
                 
                 return View("../Home/Index", model);
             }
             else
             {
                 model.enSession = 0;
+                model.loginCorrecto = 0;
                 return View("../Usuario/Login", model);
             }
 
