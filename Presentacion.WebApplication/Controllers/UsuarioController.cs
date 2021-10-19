@@ -8,6 +8,8 @@ using Entidad.ClassLibrary;
 using Logica.ClassLibrary;
 using Presentacion.WebApplication.Models;
 using System.Security.Claims;
+using System.Web;
+
 
 namespace Presentacion.WebApplication.Controllers
 {
@@ -15,7 +17,7 @@ namespace Presentacion.WebApplication.Controllers
     {
         // GET: UsuarioController
 
-        
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Login(int seleccion)
@@ -94,11 +96,16 @@ namespace Presentacion.WebApplication.Controllers
 
                 UsuarioBL.addUsuarios(usuarioTemporal);
 
+                
+                model.Estado_Session = HttpContext.Session.GetString("Estado_Session");
 
                 return View("../Home/Index", model);
             }
             catch
             {
+
+
+                model.Estado_Session = HttpContext.Session.GetString("Estado_Session");
                 return View("../Home/Index", model);
             }
         }
@@ -175,14 +182,19 @@ namespace Presentacion.WebApplication.Controllers
                 model.usuario = UsuarioBL.GetUserUnic(idUser);               
                 model.enSession = UsuarioBL.verificarSession(idUser);
 
+                string en_session = "activo";
+                HttpContext.Session.SetString("Estado_Session", en_session);
+                model.Estado_Session = HttpContext.Session.GetString("Estado_Session");
 
-                
                 return View("../Home/Index", model);
             }
             else
             {
                 model.enSession = 0;
                 model.loginCorrecto = 0;
+                
+                model.Estado_Session = HttpContext.Session.GetString("Estado_Session");
+
                 return View("../Usuario/Login", model);
             }
 

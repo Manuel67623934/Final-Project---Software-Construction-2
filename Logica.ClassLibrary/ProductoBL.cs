@@ -51,5 +51,14 @@ namespace Logica.ClassLibrary
             }
             return product;
         }
+
+
+        public static ProductoBE RetornaProducto(int Id)
+        {
+            ProductoDA productoDA = new ProductoDA();
+            ProductoBE producto = productoDA.getProducto().FirstOrDefault(elegirItem => elegirItem.Id == Id);
+            return producto;
+        }
+
     }
 }

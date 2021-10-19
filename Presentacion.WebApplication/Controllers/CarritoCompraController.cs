@@ -16,10 +16,11 @@ namespace Presentacion.WebApplication.Controllers
         // GET: CarritoCompra
         public ActionResult Index()
         {
-            WebModel model = new WebModel()
-            {
-                usuario = UsuarioBL.GetUserUnic(0)
-            };
+            WebModel model = new WebModel();
+            model.ItemsCarrito = ItemCarritoBL.GetAll();
+
+            
+            model.Estado_Session = HttpContext.Session.GetString("Estado_Session");
 
 
             return View("Index", model);
@@ -28,7 +29,11 @@ namespace Presentacion.WebApplication.Controllers
         // GET: CarritoCompra/Details/5
         public ActionResult CrearPDF()
         {
-            return new ViewAsPdf("index")
+            WebModel model = new WebModel();
+            model.ItemsCarrito = ItemCarritoBL.GetAll();
+            model.MontoTotalCarrito = ItemCarritoBL.CalculaTotal();
+            
+            return new ViewAsPdf("index", model)
             {
 
             };
@@ -77,24 +82,91 @@ namespace Presentacion.WebApplication.Controllers
         }
 
         // GET: CarritoCompra/Delete/5
-        public ActionResult Delete(int id)
+       
+        public ActionResult Delete(int Id)
         {
-            return View();
+            ItemCarritoBL.Delete(Id);
+            WebModel model = new WebModel();
+            model.ItemsCarrito = ItemCarritoBL.GetAll();
+            model.MontoTotalCarrito = ItemCarritoBL.CalculaTotal();
+
+            
+            model.Estado_Session = HttpContext.Session.GetString("Estado_Session");
+
+            return View("Index", model);
         }
 
-        // POST: CarritoCompra/Delete/5
+        // GET: CarritoCompra/Aumenta_Cantidad/
+
+        public ActionResult Aumenta_Cantidad(int Id)
+        {
+
+            ItemCarritoBL.AumentaCantidad(Id);
+            WebModel model = new WebModel();
+            model.ItemsCarrito = ItemCarritoBL.GetAll();
+            model.MontoTotalCarrito = ItemCarritoBL.CalculaTotal();
+
+
+            model.Estado_Session = HttpContext.Session.GetString("Estado_Session");
+
+            return View("Index", model);
+        }
+
+        // GET: CarritoCompra/Disminuye_Cantidad/
+
+        public ActionResult Disminuye_Cantidad(int Id)
+        {
+
+            ItemCarritoBL.DisminuyeCantidad(Id);
+            WebModel model = new WebModel();
+            model.ItemsCarrito = ItemCarritoBL.GetAll();
+            model.MontoTotalCarrito = ItemCarritoBL.CalculaTotal();
+
+            return View("Index", model);
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+
+        public ActionResult AñadirProducto(string cantidad, int Id)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            ItemCarritoBL.CrearItem(cantidad, Id);
+             
+
+            WebModel model = new WebModel();
+            model.ItemsCarrito = ItemCarritoBL.GetAll();
+            model.MontoTotalCarrito = ItemCarritoBL.CalculaTotal();
+
+            return View("Index", model);
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ActualizarCarrito(string cantidad, int Id)
+        {
+
+            ItemCarritoBL.ActualizarCarrito(cantidad, Id);
+
+
+            WebModel model = new WebModel();
+            model.ItemsCarrito = ItemCarritoBL.GetAll();
+            model.MontoTotalCarrito = ItemCarritoBL.CalculaTotal();
+
+            int c1, c2;
+            for (int i = 0; i < model.ItemsCarrito.Count(); i++)
+            {
+                if (i == 0) {
+                    c1 = model.ItemsCarrito[i].Cantidad;
+                }
+                if (i == 1)
+                {
+                    c2 = model.ItemsCarrito[i].Cantidad;
+                }
+            }
+
+
+                return View("Index", model);
+        }
+
     }
 }

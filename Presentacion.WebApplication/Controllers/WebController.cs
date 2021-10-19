@@ -1,5 +1,6 @@
 ﻿using Entidad.ClassLibrary;
 using Logica.ClassLibrary;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Presentacion.WebApplication.Models;
 using System;
@@ -26,7 +27,8 @@ namespace Presentacion.WebApplication.Controllers
                            
             };
 
-            
+            model_producto.Estado_Session = HttpContext.Session.GetString("Estado_Session");
+
 
             return View(model_producto);
         }
@@ -52,9 +54,10 @@ namespace Presentacion.WebApplication.Controllers
                 categoria = cate,
                 categoria_layout = lista_categoria,
                 enSession = 1,
-                usuario = UsuarioBL.BuscarUsuarioSessionActiva()
-                
-            };
+                usuario = UsuarioBL.BuscarUsuarioSessionActiva(),                
+                Estado_Session = HttpContext.Session.GetString("Estado_Session")
+
+        };
             return View(model) ;
         }
        

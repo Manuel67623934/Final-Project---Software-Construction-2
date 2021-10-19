@@ -16,12 +16,9 @@ namespace Dato.ClassLibrary
         static ItemCarritoDA()
         {
             ProductoDA productos = new ProductoDA();
-            List<ProductoBE> producto = productos.getProducto();  
+            List<ProductoBE> producto = productos.getProducto();
 
-            ItemsDelCarrito = new List<ItemCarritoBE>
-            {
-                new ItemCarritoBE{Id=0, Producto = producto[0], ProductoNombre=producto[0].Nombre, ProductoPrecio = producto[0].Precio, Cantidad=00, Subtotal=000, Total=0000} 
-            };
+            ItemsDelCarrito = new List<ItemCarritoBE> { };            
         }
 
         //Método para retornar todos los items carrito
@@ -34,21 +31,15 @@ namespace Dato.ClassLibrary
         
         //Método para agregar un item al carrito
         public static void Add(ItemCarritoBE item)
-        {
-            item.Id = nextId++;
-            ItemsDelCarrito.Add(item);
-
-            ItemsDelCarrito.Last().Total = CalculaTotal();
+        {            
+            ItemsDelCarrito.Add(item);            
         }
         
         
         //Método para borrar un item del carrito
-        public static void Delete(int id)
+        public static void Delete(ItemCarritoBE itemEliminar)
         {
-            ItemCarritoBE itemEliminar = ItemsDelCarrito.FirstOrDefault(elegirItem => elegirItem.Id==id);
-            ItemsDelCarrito.Remove(itemEliminar);
-
-            ItemsDelCarrito.Last().Total = CalculaTotal();
+            ItemsDelCarrito.Remove(itemEliminar);            
         }
 
 
@@ -56,27 +47,8 @@ namespace Dato.ClassLibrary
         //Actualizar cantidad
         public static void Update(ItemCarritoBE item)
         {
-            int itemActualizar = ItemsDelCarrito.FindIndex(elegirItem => elegirItem.Id == item.Id);
-            ItemsDelCarrito[itemActualizar] = item;
-
-            ItemsDelCarrito.Last().Total = CalculaTotal();
-        }
-
-
-
-        //suma de subtotales
-        public static double CalculaTotal()
-        {
-            double subtotal =0.0;
-            double total = 0.0;
-
-            for (int i = 0; i < ItemsDelCarrito.Count(); i++)
-            {
-                subtotal = ItemsDelCarrito[i].Subtotal;
-                total = total + subtotal;
-            }
-
-            return total;
+            var index = ItemsDelCarrito.FindIndex(p => p.Id == item.Id);
+            ItemsDelCarrito[index] = item;           
         }
 
         

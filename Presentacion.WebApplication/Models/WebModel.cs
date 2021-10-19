@@ -17,10 +17,16 @@ namespace Presentacion.WebApplication.Models
         public string tipoLoginNombre { get; set; }
 
         public int enSession { get; set; }
-
+        public string Estado_Session { get; set; }
+        public int Usuario_en_Session { get; set; }
         public UsuarioBE usuario{ get; set; }
 
         public int idUsuario { get; set; }
         public int loginCorrecto { get; set; }
+
+
+
+        public List<ItemCarritoBE> ItemsCarrito { get; set; }
+        public double MontoTotalCarrito { get; set; }
     }
 }

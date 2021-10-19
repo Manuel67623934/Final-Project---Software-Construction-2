@@ -7,7 +7,7 @@ using Entidad.ClassLibrary;
 
 namespace Dato.ClassLibrary
 {
-    public class UsuarioDA
+    public class UsuarioDA 
     {
         
         static List<UsuarioBE> ListaUsuarios { get; }

@@ -55,33 +55,34 @@ namespace Logica.ClassLibrary
             UsuarioDA.Delete(usuarioEliminar);
         }
 
-        public static bool validarUser(string usr, string pwd )
+        internal static bool validarUser(string usr, string pwd )
         {
                 bool validacionCorrecta = false;
-                UsuarioBE userValidar = UsuarioDA.GetAll().FirstOrDefault(elegirUsuario => elegirUsuario.User == usr);
-                if (userValidar== null)
+            UsuarioBE userValidar = UsuarioDA.GetAll().FirstOrDefault(elegirUsuario => elegirUsuario.User == usr);
+            if (userValidar == null)
+            {
+                return validacionCorrecta;
+            }
+            else
+            {
+                if (userValidar.Password == pwd)
                 {
-                    return validacionCorrecta;
+
+                    return validacionCorrecta = true;
                 }
                 else
                 {
-                    if (userValidar.Password == pwd)
-                    {
-                        
-                        return validacionCorrecta = true;
-                    }
-                    else
-                    {
-                        return validacionCorrecta;
-                    }
+                    return validacionCorrecta;
                 }
+            }
 
-            
-            
+
+
+
         }
 
 
-        public static bool validarPhone(string phone, string pwd)
+        internal static bool validarPhone(string phone, string pwd)
         {
             bool validacionCorrecta = false;
             UsuarioBE phoneValidar = UsuarioDA.GetAll().FirstOrDefault(elegirUsuario => elegirUsuario.NumberPhone == phone);

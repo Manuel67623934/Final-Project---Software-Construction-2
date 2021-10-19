@@ -9,6 +9,9 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Session;
+using Microsoft.AspNetCore.Localization;
 
 namespace Presentacion.WebApplication.Controllers
 {
@@ -39,23 +42,56 @@ namespace Presentacion.WebApplication.Controllers
                                    
             if(seleccion == 1)
             {
-                model.enSession = 1;               
-                return View ("../CarritoCompra/Index");
+                model.enSession = 1;
+                model.ItemsCarrito = ItemCarritoBL.GetAll();
+                model.MontoTotalCarrito = ItemCarritoBL.CalculaTotal();
+
+                model.Estado_Session = HttpContext.Session.GetString("Estado_Session");
+
+                return View ("../CarritoCompra/Index", model);
             }
             else
             {
                 UsuarioBL.cerrarSession(seleccion);
                 UsuarioBL.abrirSesion(0);
                 model.enSession = UsuarioBL.verificarSession(seleccion);
+
+
+                string en_session = "desactivado";
+                HttpContext.Session.SetString("Estado_Session", en_session);
+                model.Estado_Session = HttpContext.Session.GetString("Estado_Session");
+
                 return View(model);
             }
 
 
         }
 
+
+        // change language --- inicio
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult ChangeLanguage(string culture)
+        {
+            Response.Cookies.Append(CookieRequestCultureProvider.DefaultCookieName,
+                CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)),
+                new CookieOptions() { Expires = DateTimeOffset.UtcNow.AddYears(1) });
+
+            return Redirect(Request.Headers["Referer"].ToString());
+        }
+
+
+
+        //change language --- cierrre
+
+
         public IActionResult Privacy()
         {
-            return View();
+            WebModel model = new WebModel();
+            model.Estado_Session = HttpContext.Session.GetString("Estado_Session");
+
+            return View(model);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

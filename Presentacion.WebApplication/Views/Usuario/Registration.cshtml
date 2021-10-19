@@ -1,9 +1,10 @@
 ﻿@model WebModel
 @{
     ViewData["Title"] = "Registro";
-    
+
 }
 
+@inject LanguageService language
 
 
 <head>
@@ -16,49 +17,49 @@
 <body>
 
     <form class="formulario" asp-controller="Usuario" asp-action="Create" method="post">
-        <h1>Registrate </h1>
+        <h1>@language.Getkey("Registro")</h1>
 
         <div class="contenedor">
 
             <div class="input-contenedor">
                 <i class="fas fa-user icon"></i>
-                <input type="text" class="form-control" name="nombre" placeholder="Nombre" required autofocus>
+                <input type="text" class="form-control" name="nombre" placeholder=@language.Getkey("Nombre") required autofocus>
             </div>
 
             <div class="input-contenedor">
                 <i class="fas fa-user icon"></i>
-                <input type="text" class="form-control" name="apellido" placeholder="Apellido" required autofocus>
+                <input type="text" class="form-control" name="apellido" placeholder=@language.Getkey("Apellido") required autofocus>
             </div>
 
             <div class="input-contenedor">
                 <i class="fas fa-map-marker-alt"></i>
-                <input type="text" class="form-control" name="dirección" placeholder="Dirección" required autofocus>
+                <input type="text" class="form-control" name="dirección" placeholder=@language.Getkey("Direccion") required autofocus>
             </div>
 
             <div class="input-contenedor">
                 <i class="fas fa-map-marked"></i>
-                <input type="text" class="form-control" name="referencia" placeholder="Referencia" required autofocus>
+                <input type="text" class="form-control" name="referencia" placeholder=@language.Getkey("Referencia") required autofocus>
             </div>
 
             <div class="input-contenedor">
                 <i class="fas fa-phone"></i>
-                <input type="text" class="form-control" name="celular" placeholder="Celular" required autofocus>
+                <input type="text" class="form-control" name="celular" placeholder=@language.Getkey("Celular") required autofocus>
             </div>
 
             <div class="input-contenedor">
                 <i class="fas fa-envelope-open"></i>
-                <input type="text" class="form-control" name="correo" placeholder="Correo" required autofocus>
+                <input type="text" class="form-control" name="correo" placeholder=@language.Getkey("Correo") required autofocus>
             </div>
 
             <div class="input-contenedor">
                 <i class="fas fa-key icon"></i>
-                <input type="password" class="form-control" name="contraseña" placeholder="Contraseña" required>
+                <input type="password" class="form-control" name="contraseña" placeholder=@language.Getkey("Contraseña") required>
             </div>
 
             <button class="button" type="submit">
-                Registrarme
+                @language.Getkey("Registrarme")
             </button>
-            
+
 
 
         </div>

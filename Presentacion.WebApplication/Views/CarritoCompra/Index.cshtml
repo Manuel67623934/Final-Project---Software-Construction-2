@@ -4,13 +4,16 @@
     Layout = null;
 }
 
+@inject LanguageService language
+
+
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Orden de compra</title>
+    <title>@language.Getkey("Carrito compra")</title>
     <!-- Latest compiled and minified CSS -->
     <script type="text/javascript" src="js/jquery-1.12.3.js"></script>
     <link rel="stylesheet"
@@ -33,7 +36,7 @@
                     <img alt="logo" src="/imagen/logo.jpg" height="50px;">
                 </div>
                 <div class="col-xs-9 col-md-9">
-                    <h4>LICORERIA M&S</h4>
+                    <h4>@language.Getkey("LICORERIA M&S")</h4>
                     <p id="fecha">Fecha: 26/09/2021</p>
                     <p>
                         Av. Raymondi 200 Tingo María, Huánuco, Perú
@@ -42,7 +45,7 @@
             </div>
             <div class="container" id="datosPRoveedor">
                 <div class="col-xs-12 col-md-12">
-                    <h4>Datos del Cliente</h4>
+                    <h4>@language.Getkey("Datos del Cliente")</h4>
                     <p>Manuel</p>
                     <p>Bravo</p>
                     <p>Jr. San Mateo #456</p>
@@ -59,29 +62,74 @@
                         <thead>
                             <tr>
                                 <th>#id</th>
-                                <th>Producto</th>
-                                <th>Cantidad</th>
-                                <th>Precio Unitario</th>
-                                <th>Subtotal</th>
-                                <td>Eliminar</td>
+                                <th>@language.Getkey("Producto")</th>
+                                <th>@language.Getkey("Precio Unitario")</th>
+                                <th>@language.Getkey("Cantidad")</th>
+                                <th>@language.Getkey("Subtotal")</th>
+                                <td>@language.Getkey("Eliminar")</td>
                             </tr>
                         </thead>
                         <tbody>
+
+
+                            @for (int i = 0; i < Model.ItemsCarrito.Count(); i++)
+                            {
+                                <tr>
+                                    <td>@Model.ItemsCarrito[i].Id</td>
+                                    <td>@Model.ItemsCarrito[i].ProductoNombre</td>
+                                    <td>@Model.ItemsCarrito[i].ProductoPrecio</td>
+
+
+                                    <td>
+
+                                        <script language="javascript">
+
+
+                                            function validaCantidad(form) {
+
+                                                if (form.cantidad.value < 1) {
+                                                    form.cantidad.value = 1;
+                                                    alert(@language.Getkey("Alerta1"));
+                                                }
+
+                                                if (form.cantidad.value > 10) {
+                                                    form.cantidad.value = 10;
+                                                    alert(@language.Getkey("Alerta2"));
+                                                }
+
+                                            }
+                                        </script>
+
+                                        <form name="formulario" method="post" asp-controller="CarritoCompra" asp-action="ActualizarCarrito" asp-route-id=@Model.ItemsCarrito[i].Id>
+
+                                            <input type="text" name="cantidad" value="@Model.ItemsCarrito[i].Cantidad" size="2" readonly />
+                                            <input type="button" value="-" onclick="cantidad.value--;validaCantidad(this.form)" />
+                                            <input type="button" value="+" onclick="cantidad.value++;validaCantidad(this.form)" />
+
+                                            <button type="submit" class="btn btn-primary btn-sm py-2 border-bottom-0 px-5 me-3"> <i class="fas fa-shopping-bag py-1 me-2"></i>@language.Getkey("Actualizar")</button>
+
+
+                                        </form>
+
+
+
+                                    </td>
+
+
+                                    <td>@Model.ItemsCarrito[i].Subtotal</td>
+
+                                    <td>
+                                        <a class="btn btn-danger" asp-controller="CarritoCompra" asp-action="Delete" asp-route-id=@Model.ItemsCarrito[i].Id>@language.Getkey("Eliminar")</a>
+                                    </td>
+
+                                </tr>
+
+                            }
                             <tr>
-                                <td>23</td>
-                                <td>Cerveza Budweiser</td>
-                                <td>20.5</td>
-                                <td>2</td>
-                                <td>41.00</td>
-                                <td><button type="button" class="btn btn-danger">Remover</button></td>
-                            </tr>
-                            <tr>
-                                <td>24</td>
-                                <td>Papas Lays</td>
-                                <td>1</td>
-                                <td>22.50</td>
-                                <td>22.50</td>
-                                <td><button type="button" class="btn btn-danger">Remover</button></td>
+                                <td> </td>
+                                <td> </td>
+                                <th>@language.Getkey("Total a Pagar")</th>
+                                <td>@Model.MontoTotalCarrito</td>
                             </tr>
 
                         </tbody>
@@ -90,52 +138,22 @@
 
             </div>
         </section>
-        <!-- Pie -->
-        <footer>
-            <div class="container">
-                <div class="col-xs-5 col-md-5">
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>Total a pagar</th>
 
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>S/. ###</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    
+
+
+
+        <footer>
+            <div class="container text-center">
+                <div>
+                    <form class="d-flex">
+                        <a class="btn btn-info" asp-controller="home" asp-action="Index">@language.Getkey("Seguir Comprando")</a>
+                        <a class="btn btn-success" asp-controller="CarritoCompra" asp-action="CrearPDF">@language.Getkey("Confirmar Compra")</a>
+                    </form>
+
                 </div>
-               
             </div>
         </footer>
 
-        <footer>
-            <div class="container" id="altaItems">
-                <div class="col-xs-8 col-md-8">
-                    <table class="table table-striped">
-
-                        <tbody>
-                        </tbody>
-                    </table>
-                </div>
-                
-
-                <div>
-                    <form class="d-flex">
-                        <a class="btn btn-outline-success" asp-controller="home" asp-action="Index">Seguir Comprando</a>
-                    </form>
-                </div>
-                <div>
-                    <form class="d-flex">
-                        <a class="btn btn-outline-success" asp-controller="CarritoCompra" asp-action="CrearPDF">Confirmar Compra</a>
-                    </form>
-                </div>
-            </div>
-        </footer>
     </div>
 </body>
 </html>

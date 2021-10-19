@@ -1,5 +1,8 @@
 ﻿@model WebModel
 
+@inject LanguageService language
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,54 +21,72 @@
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <ul class="navbar-nav mx-auto font-weight-bolder ">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Inicio</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">@language.Getkey("Inicio")</a>
                         </li>
                         @foreach (var item in Model.categoria_layout)
                         {
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Web" asp-action="Categoria" asp-route-Url_Seo=@item.UrlSeo>@item.Nombre </a>
-                    </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Web" asp-action="Categoria" asp-route-Url_Seo=@item.UrlSeo>@item.Nombre </a>
+                            </li>
 
 
                         }
-                       
+
                     </ul>
 
-                    @if (Model.enSession == 0 || Model.usuario.Id == 0)
+                    <form class="d-flex" asp-controller="Home" asp-action="ChangeLanguage" method="post">
+
+                        <select name="culture">
+                            <option value="es-ES">@language.Getkey("Español")</option>
+                            <option value="en-US">@language.Getkey("Ingles")</option>
+                            <option value="ru-RU">@language.Getkey("Ruso")</option>
+                        </select>
+                        <button class="btn btn-outline-success" type="submit">
+                            @language.Getkey("Seleccionar")
+                        </button>
+
+                    </form>
+
+
+
+
+
+
+                    @if (Model.Estado_Session == "desactivado")
                     {
                         <form class="d-flex" asp-controller="Usuario" asp-action="Login" method="post">
 
                             <select name="seleccion">
-                                <option value="1">Correo</option>
-                                <option value="2">Celular</option>
+                                <option value="1">@language.Getkey("Correo")</option>
+                                <option value="2">@language.Getkey("Celular")</option>
                             </select>
                             <button class="btn btn-outline-success" type="submit">
-                                Iniciar Sesión
+                                @language.Getkey("Iniciar Sesion")
                             </button>
 
                         </form>
 
                         <form class="d-flex">
-                            <a class="btn btn-outline-success" asp-controller="Usuario" asp-action="Registration">Registro</a>
+                            <a class="btn btn-outline-success" asp-controller="Usuario" asp-action="Registration">@language.Getkey("Registro")</a>
                         </form>
                     }
 
-                    @if (Model.enSession == 1 && Model.usuario.Id != 0)
+                    @if (Model.Estado_Session != "desactivado")
                     {
 
-                <form class="d-flex" asp-controller="Home" asp-action="Index" method="post">
+                        <form class="d-flex" asp-controller="Home" asp-action="Index" method="post">
 
-                    <select name="seleccion">
-                        <option value=@Convert.ToString(Model.usuario.Id)>Cerrar Session</option>
-                        <option value="1">Ver Carrito</option>s
-                    </select>
-                    <button class="btn btn-outline-success" type="submit">
-                        Ir
-                    </button>
+                            <select name="seleccion">
+                                <option value=@Convert.ToString(Model.usuario.Id)>@language.Getkey("Cerrar Session")</option>
+                                <option value="1">@language.Getkey("Ver Carrito")</option>s
+                            </select>
+                            <button class="btn btn-outline-success" type="submit">
+                                @language.Getkey("Ir")
+                            </button>
 
-                </form>
+                        </form>
                         <button class="btn btn-outline-success" type="submit">
-                            Hola @Model.usuario.FirtsName
+                            @language.Getkey("Hola") @Model.usuario.FirtsName
                         </button>
 
                     }
@@ -85,8 +106,8 @@
         <div class="container py-5">
             <div class="row">
                 <div class="col-md-4 col-sm-12 mb-3 mb-md-0">
-                    <span class="text-white">Minimarket M&S</span>
-                    <p class="text-muted">Aceptamos todas las tarjetas</p>
+                    <span class="text-white">@language.Getkey("Minimarket M&S")</span>
+                    <p class="text-muted">@language.Getkey("Aceptamos todas las tarjetas")</p>
                     <ul class="list-inline">
                         <li class="list-inline-item"><i class="fab fa-cc-visa text-white"></i></li>
                         <li class="list-inline-item"><i class="fab fa-cc-mastercard text-white"></i></li>
@@ -96,25 +117,25 @@
                     </ul>
                 </div>
                 <div class="col-md-2 col-sm-12 mb-3 mb-md-0">
-                    <h6 class="text-white">Nosotros</h6>
+                    <h6 class="text-white">@language.Getkey("Nosotros")</h6>
                     <ul class="list-unstyled text-muted mb-0">
-                        <li class="mb-2"><a class="reset-anchor" href="#">Inicio</a></li>
-                        <li class="mb-2"><a class="reset-anchor" href="#">Quiénes Somos</a></li>
+                        <li class="mb-2"><a class="reset-anchor" href="#">@language.Getkey("Inicio")</a></li>
+                        <li class="mb-2"><a class="reset-anchor" href="#">@language.Getkey("Quiénes Somos")</a></li>
                         <li class="mb-2"><a class="reset-anchor" href="#"></a></li>
-                        <li class="mb-2"><a class="reset-anchor" href="#">Contáctanos</a></li>
+                        <li class="mb-2"><a class="reset-anchor" href="#">@language.Getkey("Contáctanos")</a></li>
                     </ul>
                 </div>
                 <div class="col-md-2 col-sm-12 mb-3 mb-md-0">
-                    <h6 class="text-white">Atención al Cliente</h6>
+                    <h6 class="text-white">@language.Getkey("Atención al Cliente")</h6>
                     <ul class="list-unstyled text-muted mb-0">
-                        <li class="mb-2"> <a class="reset-anchor" href="#">Mi Cuenta</a></li>
-                        <li class="mb-2"> <a class="reset-anchor" href="#">Preguntas Frecuentes</a></li>
-                        <li class="mb-2"> <a class="reset-anchor" href="#">Términos y condiciones</a></li>
+                        <li class="mb-2"> <a class="reset-anchor" href="#">@language.Getkey("Mi Cuenta")</a></li>
+                        <li class="mb-2"> <a class="reset-anchor" href="#">@language.Getkey("Preguntas Frecuentes")</a></li>
+                        <li class="mb-2"> <a class="reset-anchor" href="#">@language.Getkey("Términos y condiciones")</a></li>
                     </ul>
                 </div>
                 <div class="col-md-4 col-sm-12 mb-3 mb-md-0">
                     <p class="lead mb-1 text-white">Telf: (+51) 941 488 793</p>
-                    <p class="text-muted">Av. Las Palemeras 128 Int 102<br />Los Olivos - Lima</p>
+                    <p class="text-muted">Av. Las Palmeras 128 Int 102<br />Los Olivos - Lima</p>
                     <ul class="list-inline mb-0">
                         <li class="list-inline-item"><a class="social-icon" href="#"><i class="fab fa-facebook-f"></i></a></li>
                         <li class="list-inline-item"><a class="social-icon" href="#"><i class="fab fa-twitter"></i></a></li>
@@ -128,10 +149,10 @@
             <div class="border-top py-4" style="border-color: #1d1d1d !important">
                 <div class="row">
                     <div class="col-lg-6">
-                        <p class="small text-muted mb-0">© 2021 Todos los derechos reservados.</p>
+                        <p class="small text-muted mb-0">@language.Getkey("© 2021 Todos los derechos reservados.")</p>
                     </div>
                     <div class="col-lg-6 text-lg-end">
-                        <p class="small text-muted mb-0">Desarrollado por <a class="text-white reset-anchor" href="#" target="_blank">Taniguchi</a></p>
+                        <p class="small text-muted mb-0">@language.Getkey("Desarrollado por")<a class="text-white reset-anchor" href="#" target="_blank">M&S</a></p>
                     </div>
                 </div>
             </div>

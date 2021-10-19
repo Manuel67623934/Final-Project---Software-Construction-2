@@ -3,6 +3,9 @@
     ViewData["Title"] = "Minimarket";
 }
 
+@inject LanguageService language
+
+
 <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-indicators">
         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -31,11 +34,11 @@
 </div>
 
 <section class="my-5">
-    
+
     <div class="container">
         <header class="my-5 text-center">
-            <h2 class="mb-0">Novedades</h2>
-            <p class="text-muted">Explora los productos más nuevos</p>
+            <h2 class="mb-0">@language.Getkey("Novedades")</h2>
+            <p class="text-muted">@language.Getkey("Explorar")</p>
         </header>
         <div class="row">
             @foreach (var item in Model.prod)
@@ -47,7 +50,7 @@
                             <h5 class="card-title text-center">@item.Nombre</h5>
                             <p class="card-text text-center text-danger">@item.Precio</p>
                             <div class="d-grid gap-2">
-                                <a class="btn btn-dark" asp-controller="Web" asp-action="Producto" asp-route-Url_Seo=@item.UrlSeo>Ver detalles</a>
+                                <a class="btn btn-dark" asp-controller="Web" asp-action="Producto" asp-route-Url_Seo=@item.UrlSeo>@language.Getkey("Detalle")</a>
                             </div>
                         </div>
                     </div>

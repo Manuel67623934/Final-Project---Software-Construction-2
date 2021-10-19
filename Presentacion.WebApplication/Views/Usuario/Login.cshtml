@@ -6,6 +6,7 @@
 
 }
 
+@inject LanguageService language
 
 <head>
     <link href="/css/EstiloGeneral.css" rel="stylesheet" />
@@ -17,53 +18,53 @@
 <body>
 
 
-    
-    
+
+
 
 
     <form class="formulario" asp-controller="Usuario" asp-action="ValidarLogin" method="post">
 
         @if (Model.enSession == 0)
+        {
+        <p>@language.Getkey("Advertencia login")</p>
+        }
+
+
+
+    <h1>@language.Getkey("Iniciar Sesion")</h1>
+
+        <div class="contenedor">
+
+            @if (Model.tipoLogin == 1)
             {
-                    <p>Las Credenciales no está Registradas</p>
+                <div class="input-contenedor">
+                    <i class="fas fa-user icon"></i>
+                    <input type="text" class="form-control" name="usr" placeholder=@language.Getkey("Correo") required autofocus>
+                </div>
+            }
+            else
+            {
+                <div class="input-contenedor">
+                    <i class="fas fa-user icon"></i>
+                    <input type="text" class="form-control" name="phone" placeholder=@language.Getkey("Celular") required autofocus>
+                </div>
             }
 
 
-
-            <h1>Iniciar Sesión  </h1>
-
-            <div class="contenedor">
-
-                @if (Model.tipoLogin == 1)
-                {
-                    <div class="input-contenedor">
-                        <i class="fas fa-user icon"></i>
-                        <input type="text" class="form-control" name="usr" placeholder="Correo" required autofocus>
-                    </div>
-                }
-                else
-                {
-                    <div class="input-contenedor">
-                        <i class="fas fa-user icon"></i>
-                        <input type="text" class="form-control" name="phone" placeholder="Número de Celular" required autofocus>
-                    </div>
-                }
-
-
-                <div class="input-contenedor">
-                    <i class="fas fa-key icon"></i>
-                    <input type="password" class="form-control" name="pwd" placeholder="Contraseña" required>
-                </div>
-
-                <button class="button" type="submit">
-                    Iniciar sesión
-                </button>
-                <p>Deseo ser cliente <a class="link" href="Registration">Registro</a></p>
-
-
+            <div class="input-contenedor">
+                <i class="fas fa-key icon"></i>
+                <input type="password" class="form-control" name="pwd" placeholder=@language.Getkey("Contraseña") required>
             </div>
 
-        </form>
+            <button class="button" type="submit">
+                @language.Getkey("Iniciar Sesion")
+            </button>
+            <p>@language.Getkey("Deseo ser cliente") <a class="link" href="Registration">@language.Getkey("Registro")</a></p>
+
+
+        </div>
+
+    </form>
 
 </body>
 
