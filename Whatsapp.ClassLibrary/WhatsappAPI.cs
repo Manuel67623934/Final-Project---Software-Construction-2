@@ -17,7 +17,7 @@ namespace Whatsapp.ClassLibrary
                 var authToken = "6044f9d986463e7313620c8067211704";
                 TwilioClient.Init(accountSid, authToken);
                 var messageOptions = new CreateMessageOptions(
-                new PhoneNumber("whatsapp:+51941488793"));
+                new PhoneNumber("whatsapp:+51929493508"));
                 messageOptions.From = new PhoneNumber("whatsapp:+14155238886");
                 messageOptions.Body = mensaje;
 
