@@ -5,189 +5,120 @@ using System.Text;
 using System.Threading.Tasks;
 using Entidad.ClassLibrary;
 using Dato.ClassLibrary;
+using Microsoft.AspNetCore.Http;
 
 namespace Logica.ClassLibrary
 {
-    public class UsuarioBL
+    public class UsuarioLogica
     {
-        static int nextId = 4;
-        public List<UsuarioBE> getUsuarios()
-        {
-            List<UsuarioBE> dataUsuarios;
-            return dataUsuarios = UsuarioDA.GetAll();
+        // Inicializar valores (id).
+        static int _nextId = 4;
+        
+        // Retorna todos los usuarios de la base de datos.
+        public List<UsuarioEntidad> ObtenerUsuarios()
+        {            
+            return UsuarioDatos.ObtenerTodo();
         }
 
-
-        public static int GetId(string usr, string phone)
-        {
-            int userId = 0;
-            UsuarioBE usuario = UsuarioDA.GetAll().FirstOrDefault(elegirUsuario => elegirUsuario.User == usr);
-
+        // Retorna el Id de un usuario especifico mediante la compación del username y validando el número de celular.
+        public static int ObtenerId(string usr, string phone)
+        {            
+            UsuarioEntidad usuario = UsuarioDatos.ObtenerTodo().FirstOrDefault(elegirUsuario => elegirUsuario.Usuario == usr);
             if (usuario == null)
             {
-                UsuarioBE usuario1 = UsuarioDA.GetAll().FirstOrDefault(elegirUsuario => elegirUsuario.NumberPhone == phone);
-                return userId = usuario1.Id;
+                UsuarioEntidad usuario1 = UsuarioDatos.ObtenerTodo().FirstOrDefault(elegirUsuario => elegirUsuario.NumeroCelular == phone);
+                return usuario1.Id;
             }
             else
             {
-                return userId = usuario.Id;
-            }
-            
+                return usuario.Id;
+            }            
         }
 
-
-        public static UsuarioBE GetUserUnic(int id)
+        // Retorna un usuario especifico.
+        public static UsuarioEntidad ObtenerUnicoUsuario(int id)
         {
-            UsuarioBE usuarioRecuperar = UsuarioDA.GetUserUnic(id);
+            UsuarioEntidad usuarioRecuperar = UsuarioDatos.ObtenerUnicoUsuario(id);
             return usuarioRecuperar;
         }
 
-
-        public static void addUsuarios(UsuarioBE usuario)
+        // Registra nuevos usuarios en la data.
+        public static void AgregarUsuarios(UsuarioEntidad usuario)
         {
-            usuario.Id = nextId++;
-            UsuarioDA.Add(usuario);        
+            usuario.Id = _nextId++;
+            UsuarioDatos.Agregar(usuario);        
         }
 
-        public static void deleteUsuario(int id)
+        // Eliminar un usuario mediante la identificación del su id.
+        public static void EliminarUsuario(int id)
         {                  
-            UsuarioBE usuarioEliminar = UsuarioDA.GetAll().FirstOrDefault(elegirUsuario => elegirUsuario.Id == id);
-            UsuarioDA.Delete(usuarioEliminar);
+            UsuarioEntidad usuarioEliminar = UsuarioDatos.ObtenerTodo().FirstOrDefault(elegirUsuario => elegirUsuario.Id == id);
+            UsuarioDatos.Eliminar(usuarioEliminar);
         }
 
-        internal static bool validarUser(string usr, string pwd )
+        // Válida el username ingresado por el usuario.
+        internal static bool ValidarUsuario(string usr, string pwd )
         {
-                bool validacionCorrecta = false;
-            UsuarioBE userValidar = UsuarioDA.GetAll().FirstOrDefault(elegirUsuario => elegirUsuario.User == usr);
+            UsuarioEntidad userValidar = UsuarioDatos.ObtenerTodo().FirstOrDefault(elegirUsuario => elegirUsuario.Usuario == usr);
             if (userValidar == null)
             {
-                return validacionCorrecta;
+                return false;
             }
             else
             {
-                if (userValidar.Password == pwd)
+                if (userValidar.Contraseña == pwd)
                 {
-
-                    return validacionCorrecta = true;
+                    return true;
                 }
                 else
                 {
-                    return validacionCorrecta;
+                    return false;
                 }
             }
-
-
-
-
         }
 
-
-        internal static bool validarPhone(string phone, string pwd)
-        {
-            bool validacionCorrecta = false;
-            UsuarioBE phoneValidar = UsuarioDA.GetAll().FirstOrDefault(elegirUsuario => elegirUsuario.NumberPhone == phone);
-
+        // Válida el celular ingresado por el usuario.
+        public static bool ValidarCelular(string phone, string pwd)
+        {            
+            UsuarioEntidad phoneValidar = UsuarioDatos.ObtenerTodo().FirstOrDefault(elegirUsuario => elegirUsuario.NumeroCelular == phone);
             if (phoneValidar == null)
             {
-                return validacionCorrecta;
+                return false;
             }
             else
             {
-                if (phoneValidar.Password == pwd)
-                {
-                    
-                    return validacionCorrecta = true;                    
+                if (phoneValidar.Contraseña == pwd)
+                {                    
+                    return true;                    
                 }
                 else
                 {
-                    return validacionCorrecta;
+                    return false;
                 }
             }
-
-
         }
 
-
-        public static int loginCorrecto(string usr, string phone , string pwd)
-        {
-            int loginCorrecto = 0;
-            
-
+        // Válida la identidad del usuario para permitir o denegar el acceso a las credenciales.
+        public static int LoginCorrecto(string usr, string phone , string pwd)
+        {              
             bool loginExitosoUser = false;
             bool loginExitosoPhone = false;
-
             if (usr == "indefinido")
             {
-                loginExitosoPhone = UsuarioBL.validarPhone(phone, pwd);
+                loginExitosoPhone = UsuarioLogica.ValidarCelular(phone, pwd);
             }
             if (phone == "indefinido")
             {
-                loginExitosoUser = UsuarioBL.validarUser(usr, pwd);
+                loginExitosoUser = UsuarioLogica.ValidarUsuario(usr, pwd);
             }
-            if (loginExitosoUser == true || loginExitosoPhone == true)
+            if (loginExitosoUser || loginExitosoPhone)
             {
-                return loginCorrecto = 1;
+                return 1;
             }
             else
             {
-                return loginCorrecto;
-            }
-
-
-        }
-
-        
-        
-        public static void abrirSesion(int id)
-        {
-            UsuarioBE usuario = UsuarioDA.GetAll().FirstOrDefault(elegirUsuario => elegirUsuario.Id == id);
-            usuario.Session = 1;
-            UsuarioDA.Update(usuario);
-        }
-        
-        public static void cerrarSession(int id)
-        {
-            UsuarioBE usuario = UsuarioDA.GetAll().FirstOrDefault(elegirUsuario => elegirUsuario.Id == id);
-            usuario.Session = 0;
-            UsuarioDA.Update(usuario);
-        }
-
-
-        public static int verificarSession(int id)
-        {
-            int session = 0;
-            UsuarioBE user = UsuarioDA.GetUserUnic(id);
-            if (user.Session == 1)
-            {
-                return session = 1;
-            }
-            else
-            {
-                return session;
+                return 0;
             }
         }
-
-
-        public static UsuarioBE BuscarUsuarioSessionActiva()
-        {
-            UsuarioBE usuarioEnSession= new UsuarioBE();
-            foreach (var item in UsuarioDA.GetAll())
-            {
-                if (item.Id==1)
-                {
-                    usuarioEnSession = item;                    
-                    break;
-                }
-                else
-                {
-                    usuarioEnSession = UsuarioDA.GetUserUnic(0);
-                    break;
-                }
-            }
-            return usuarioEnSession;
-        }
-        
-
-       
     }
 }

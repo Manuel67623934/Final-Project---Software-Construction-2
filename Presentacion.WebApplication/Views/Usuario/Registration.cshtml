@@ -8,6 +8,7 @@
 
 
 <head>
+    <title>Register user</title>
     <link href="/css/EstiloGeneral.css" rel="stylesheet" />
     <script src="https://kit.fontawesome.com/4b71027628.js" crossorigin="anonymous"></script>
 
@@ -16,43 +17,43 @@
 
 <body>
 
-    <form class="formulario" asp-controller="Usuario" asp-action="Create" method="post">
+    <form class="formulario" asp-controller="Usuario" asp-action="Crear" method="post">
         <h1>@language.Getkey("Registro")</h1>
 
         <div class="contenedor">
 
             <div class="input-contenedor">
-                <i class="fas fa-user icon"></i>
+                <em class="fas fa-user icon"></em>
                 <input type="text" class="form-control" name="nombre" placeholder=@language.Getkey("Nombre") required autofocus>
             </div>
 
             <div class="input-contenedor">
-                <i class="fas fa-user icon"></i>
+                <em class="fas fa-user icon"></em>
                 <input type="text" class="form-control" name="apellido" placeholder=@language.Getkey("Apellido") required autofocus>
             </div>
 
             <div class="input-contenedor">
-                <i class="fas fa-map-marker-alt"></i>
+                <em class="fas fa-map-marker-alt"></em>
                 <input type="text" class="form-control" name="dirección" placeholder=@language.Getkey("Direccion") required autofocus>
             </div>
 
             <div class="input-contenedor">
-                <i class="fas fa-map-marked"></i>
+                <em class="fas fa-map-marked"></em>
                 <input type="text" class="form-control" name="referencia" placeholder=@language.Getkey("Referencia") required autofocus>
             </div>
 
             <div class="input-contenedor">
-                <i class="fas fa-phone"></i>
+                <em class="fas fa-phone"></em>
                 <input type="text" class="form-control" name="celular" placeholder=@language.Getkey("Celular") required autofocus>
             </div>
 
             <div class="input-contenedor">
-                <i class="fas fa-envelope-open"></i>
+                <em class="fas fa-envelope-open"></em>
                 <input type="text" class="form-control" name="correo" placeholder=@language.Getkey("Correo") required autofocus>
             </div>
 
             <div class="input-contenedor">
-                <i class="fas fa-key icon"></i>
+                <em class="fas fa-key icon"></em>
                 <input type="password" class="form-control" name="contraseña" placeholder=@language.Getkey("Contraseña") required>
             </div>
 

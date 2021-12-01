@@ -17,59 +17,76 @@ namespace Presentacion.WebApplication.Controllers
 {
     public class HomeController : Controller
     {
-        
 
-
-
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        static int _numeroIngreso = 0;
+        public IActionResult Inicializar()
         {
-            _logger = logger;
+            HttpContext.Session.SetInt32("Id_cliente_activo", 0);
+            HttpContext.Session.SetString("Estado_Session", "desactivado");
+            return RedirectToAction("Index", "Home");            
         }
-
-        public IActionResult Index(int seleccion = 0)
-        {
-            
-            
+        
+        
+        public IActionResult Index()
+        {            
+            // Iniciar lista de productos.
             WebModel model = new WebModel();
-            List<CategoriaBE> categoria = new CategoriaBL().getCategorias();
-            List<ProductoBE> producto = new ProductoBL().GetProductos();
+            List<CategoriaEntidad> categoria = new CategoriaLogica().ObtenerCategorias();
+            List<ProductoEntidad> producto = new ProductoBL().ObtenerProductos();
             model.prod = producto;
             model.categoria_layout = categoria;
-            model.enSession = 0;
-            model.usuario = UsuarioBL.BuscarUsuarioSessionActiva();
-                                   
-            if(seleccion == 1)
+            // Ingreso primera vez.            
+            if ( _numeroIngreso == 0)
             {
-                model.enSession = 1;
-                model.ItemsCarrito = ItemCarritoBL.GetAll();
-                model.MontoTotalCarrito = ItemCarritoBL.CalculaTotal();
-
+                _numeroIngreso++;
                 model.Estado_Session = HttpContext.Session.GetString("Estado_Session");
+                return View(model);
+            }
+            // Pasar por Home IndeX más de 1 vez.
+            else
+            {                             
+                // Cliente logeado quiere seguir navegando en la web.
+                string estadoSession = HttpContext.Session.GetString("Estado_Session");
+                if (estadoSession == "activo")
+                {
+                    model.Estado_Session = HttpContext.Session.GetString("Estado_Session");
+                    int cliente_activo = (int)HttpContext.Session.GetInt32("Id_cliente_activo");
+                    model.usuario = UsuarioLogica.ObtenerUnicoUsuario(cliente_activo);
+                    return View(model);
+                }
+                model.Estado_Session = HttpContext.Session.GetString("Estado_Session");
+                int cliente_activo_1 = (int)HttpContext.Session.GetInt32("Id_cliente_activo");
+                model.usuario = UsuarioLogica.ObtenerUnicoUsuario(cliente_activo_1);
+                return View(model);
+            }
+        }
 
-                return View ("../CarritoCompra/Index", model);
+        // Se encarga de cerras sesion del usuario (al cerrar la sesion se borra los items del carrito de compras).
+
+        public IActionResult CerrarSesion(int seleccion)
+        {
+            WebModel model = new WebModel();
+            List<CategoriaEntidad> categoria = new CategoriaLogica().ObtenerCategorias();
+            List<ProductoEntidad> producto = new ProductoBL().ObtenerProductos();
+            model.prod = producto;
+            model.categoria_layout = categoria;
+
+            if (seleccion == 1)
+            {
+                return RedirectToAction("Index", "CarritoCompra");                
             }
             else
             {
-                UsuarioBL.cerrarSession(seleccion);
-                UsuarioBL.abrirSesion(0);
-                model.enSession = UsuarioBL.verificarSession(seleccion);
-
-
-                string en_session = "desactivado";
-                HttpContext.Session.SetString("Estado_Session", en_session);
+                ItemCarritoLogica.LimpiarCarrito();
+                HttpContext.Session.SetString("Estado_Session", "desactivado");
                 model.Estado_Session = HttpContext.Session.GetString("Estado_Session");
-
-                return View(model);
+                HttpContext.Session.SetInt32("Id_cliente_activo", 0);
+                return View("../Home/Index", model);
             }
-
-
         }
 
 
-        // change language --- inicio
-
+        // Cambiar idioma - inicio.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult ChangeLanguage(string culture)
@@ -80,20 +97,15 @@ namespace Presentacion.WebApplication.Controllers
 
             return Redirect(Request.Headers["Referer"].ToString());
         }
-
-
-
-        //change language --- cierrre
-
+        
 
         public IActionResult Privacy()
         {
             WebModel model = new WebModel();
             model.Estado_Session = HttpContext.Session.GetString("Estado_Session");
-
             return View(model);
         }
-
+                
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

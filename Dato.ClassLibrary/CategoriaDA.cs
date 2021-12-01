@@ -5,15 +5,16 @@ using System.Collections.Generic;
 
 namespace Dato.ClassLibrary
 {
-   public class CategoriaDA
+   public class CategoriaDatos
     {
-        public List<CategoriaBE> getCategoria()
+        // Retorna las categorias.
+        public List<CategoriaEntidad> ObtenerCategoria()
         {
-            List<CategoriaBE> listacategoria = new List<CategoriaBE>() { 
-            new CategoriaBE(){Id =1 , Nombre="Licores",Estado='1',UrlSeo="Licores"},
-            new CategoriaBE(){Id =2 , Nombre="Cigarros",Estado='1',UrlSeo="Cigarros"},
-            new CategoriaBE(){Id =3 , Nombre="Cerveza",Estado='0',UrlSeo="Cerveza"},
-            new CategoriaBE(){Id =4 , Nombre="Snacks",Estado='1',UrlSeo="Snacks"},
+            List<CategoriaEntidad> listacategoria = new List<CategoriaEntidad>() { 
+            new CategoriaEntidad(){Id =1 , Nombre="Licores",Estado='1',UrlSeo="Licores"},
+            new CategoriaEntidad(){Id =2 , Nombre="Cigarros",Estado='1',UrlSeo="Cigarros"},
+            new CategoriaEntidad(){Id =3 , Nombre="Cervezas",Estado='1',UrlSeo="Cerveza"},
+            new CategoriaEntidad(){Id =4 , Nombre="Snacks",Estado='1',UrlSeo="Snacks"},
             };
 
             return listacategoria;

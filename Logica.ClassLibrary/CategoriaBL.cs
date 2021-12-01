@@ -6,86 +6,85 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
-
 namespace Logica.ClassLibrary
 {
-   public class CategoriaBL
+   public class CategoriaLogica
     {
-        public List<CategoriaBE> getCategorias()
+        // Obtiene las categorias desde la capa de datos.
+        public List<CategoriaEntidad> ObtenerCategorias()
         {
-            CategoriaDA data = new CategoriaDA();
-            List<CategoriaBE> lista ;
-           List<CategoriaBE> lista_temp = new List<CategoriaBE> ();
-            lista = data.getCategoria();
+            CategoriaDatos data = new CategoriaDatos();
+            List<CategoriaEntidad> lista;
+            List<CategoriaEntidad> listaTemporal = new List<CategoriaEntidad>();
+            lista = data.ObtenerCategoria();
               for (int i = 0; i < lista.Count; i++)
               {
                   if(lista[i].Estado.Equals('1'))
-                  {
-                 
-                      lista_temp.Add(lista[i]);
-
+                  {                 
+                      listaTemporal.Add(lista[i]);
                   }
-
               }
-            Console.WriteLine(lista_temp);
-            return lista_temp;
+            Console.WriteLine(listaTemporal);
+            return listaTemporal;
         }
-        public List<ProductoBE> GetProductos(string Url_Seo)
-        {
-            ProductoDA dato_producto = new ProductoDA();
-            CategoriaDA dato_categoria = new CategoriaDA();
-            List<CategoriaBE> lista_categoria;
-            List<ProductoBE> lista_producto;
-            List<ProductoBE> lista_temp = new List<ProductoBE>();
-            lista_producto = dato_producto.getProducto();
-            lista_categoria = dato_categoria.getCategoria();
-            int id_categoria = 0;
-            for (int i = 0; i < lista_categoria.Count; i++)
-            {
-                if (lista_categoria[i].UrlSeo.Equals(Url_Seo))
-                {
-                    id_categoria = lista_categoria[i].Id;
-                }
-            }
-            for (int i = 0; i < lista_producto.Count; i++)
-            {
-                if (lista_producto[i].id_categoria.Equals(id_categoria))
-                {
-                    lista_temp.Add(lista_producto[i]);
-                }
-            }
 
-            return lista_temp;
+        // Obtiene los productos desde la capa de datos.
+        public List<ProductoEntidad> ObtenerProductos(string urlSeo)
+        {
+            ProductoDatos datoProducto = new ProductoDatos();
+            CategoriaDatos datoCategoria = new CategoriaDatos();
+            List<CategoriaEntidad> listaCategoria;
+            List<ProductoEntidad> listaProducto;
+            List<ProductoEntidad> listaTemporal = new List<ProductoEntidad>();
+            listaProducto = datoProducto.ObtenerProducto();
+            listaCategoria = datoCategoria.ObtenerCategoria();
+            int idCategoria = 0;
+            for (int i = 0; i < listaCategoria.Count; i++)
+            {
+                if (listaCategoria[i].UrlSeo.Equals(urlSeo))
+                {
+                    idCategoria = listaCategoria[i].Id;
+                }
+            }
+            for (int i = 0; i < listaProducto.Count; i++)
+            {
+                if (listaProducto[i].IdCategoria.Equals(idCategoria))
+                {
+                    listaTemporal.Add(listaProducto[i]);
+                }
+            }
+            return listaTemporal;
         }
-        public CategoriaBE ObtenerCategoria (string Url_Seo)
+
+        // Obtiene una categoria especifica.
+        public CategoriaEntidad ObtenerCategoria (string urlSeo)
         {
-            List<CategoriaBE> lista_categoria = new CategoriaDA().getCategoria();
-            CategoriaBE temp = new CategoriaBE();
-            for (int i = 0; i < lista_categoria.Count; i++)
+            List<CategoriaEntidad> listaCategoria = new CategoriaDatos().ObtenerCategoria();
+            CategoriaEntidad categoriaTemporal = new CategoriaEntidad();
+            for (int i = 0; i < listaCategoria.Count; i++)
             {
-                if (lista_categoria[i].UrlSeo.Equals(Url_Seo))
+                if (listaCategoria[i].UrlSeo.Equals(urlSeo))
                 {
-                    temp = lista_categoria[i];
+                    categoriaTemporal = listaCategoria[i];
                 }
             }
-
-            return temp;
+            return categoriaTemporal;
         }
-        public CategoriaBE ObtenerCategoriaProducto (string Url_Seo)
+
+        // Obtiene la categoria de un producto particular.
+        public CategoriaEntidad ObtenerCategoriaProducto (string urlSeo)
         {
-            CategoriaBE cate = new CategoriaBE();
-            List<CategoriaBE> lista_categoria = new CategoriaBL().getCategorias();
-            ProductoBE producto = new ProductoBL().getProducto(Url_Seo);
-            for (int i = 0; i < lista_categoria.Count; i++)
+            CategoriaEntidad categoria = new CategoriaEntidad();
+            List<CategoriaEntidad> listaCategoria = new CategoriaLogica().ObtenerCategorias();
+            ProductoEntidad producto = new ProductoBL().ObtenerProducto(urlSeo);
+            for (int i = 0; i < listaCategoria.Count; i++)
             {
-                if (lista_categoria[i].Id.Equals(producto.id_categoria))
+                if (listaCategoria[i].Id.Equals(producto.IdCategoria))
                 {
-                    cate = lista_categoria[i];
+                    categoria = listaCategoria[i];
                 }
             }
-            return cate;
-
+            return categoria;
         }
     }
 }

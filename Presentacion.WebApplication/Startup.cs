@@ -17,14 +17,21 @@ using System.Reflection;
 using System.Globalization;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.Http;
+
+
+
 
 namespace Presentacion.WebApplication
 {
     public class Startup
     {
+
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            
         }
 
         public IConfiguration Configuration { get; }
@@ -35,8 +42,12 @@ namespace Presentacion.WebApplication
             services.AddControllersWithViews();
             services.AddDbContext<MinimarketDa>(options => options.UseSqlServer(Configuration.GetConnectionString("MarketDA")));
 
-            services.AddSession();            
+               
             services.AddMvc(option => option.EnableEndpointRouting = false);
+            services.AddDistributedMemoryCache();
+            services.AddSession(options => {
+                options.IdleTimeout = TimeSpan.FromMinutes(20); // Tiempo de expiración   
+            });
 
 
 
@@ -93,7 +104,8 @@ namespace Presentacion.WebApplication
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             Rotativa.AspNetCore.RotativaConfiguration.Setup(env.WebRootPath, "../CarritoPDF");
-
+            app.UseStaticFiles();
+            app.UseSession();       
 
             if (env.IsDevelopment())
             {
@@ -123,9 +135,10 @@ namespace Presentacion.WebApplication
 
             app.UseMvc(routes =>
             {
+                
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Home}/{action=Inicializar}/{id?}");
             });
 
             
@@ -133,5 +146,9 @@ namespace Presentacion.WebApplication
 
 
         }
+    
+    
+    
     }
+
 }

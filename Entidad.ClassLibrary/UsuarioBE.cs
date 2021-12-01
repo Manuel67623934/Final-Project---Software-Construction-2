@@ -7,25 +7,25 @@ using System.Threading.Tasks;
 
 namespace Entidad.ClassLibrary
 {
-    public class UsuarioBE
+    public class UsuarioEntidad
     {
         [Key]
         [Required]
         public int Id { get; set; }
         [Required]
-        public string User { get; set; }
+        public string Usuario { get; set; }
         [Required]
-        public string Password { get; set; }
+        public string Contraseña { get; set; }
         [Required]
-        public string FirtsName { get; set; }
+        public string Nombres { get; set; }
         [Required]
-        public string LastsName { get; set; }
+        public string Apellido { get; set; }
         [Required]
-        public string NumberPhone { get; set; }
+        public string NumeroCelular { get; set; }
         [Required]
-        public string Address { get; set; }
+        public string Direccion { get; set; }
         [Required]
-        public string Reference { get; set; }
-        public int Session { get; set; }
+        public string Referencia { get; set; }
+        public int EstadoSesion { get; set; }
     }
 }

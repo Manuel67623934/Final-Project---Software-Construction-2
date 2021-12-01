@@ -7,55 +7,52 @@ using Entidad.ClassLibrary;
 
 namespace Dato.ClassLibrary
 {
-    public class UsuarioDA 
-    {
+    public class UsuarioDatos 
+    {        
+        static List<UsuarioEntidad> _listaUsuarios { get; }       
         
-        static List<UsuarioBE> ListaUsuarios { get; }
-        //static int nextId = 4;
-        
-        
-        static UsuarioDA()
+        // Crea la lista de usuarios.
+        static UsuarioDatos()
         {
-            //UsuarioBE user = new UsuarioBE();
-
-            ListaUsuarios = new List<UsuarioBE>
+           _listaUsuarios = new List<UsuarioEntidad>
             {
-                new UsuarioBE {Id=0, User = "cliente@cs2.com", Password = "cliente123", FirtsName="NombreCliente" , LastsName="ApellidoCliente", NumberPhone="987564231",Address = "Jr. Example #456", Reference= "Casa blanca de 2 pisos", Session = 1 },
-                new UsuarioBE {Id=2, User = "bravo@cs2.com", Password = "bravo123", FirtsName="Manuel" , LastsName="Bravo", NumberPhone="987564792",Address = "Jr. Pinos #456", Reference= "Frente al Poder Judicial",  Session = 0 },
-                new UsuarioBE {Id=3, User = "taniguchi@cs2.com", Password = "taniguchi123", FirtsName="Sonny" , LastsName="Taniguchi", NumberPhone="987564213",Address = "Jr. San Mateo #456", Reference= "Al lado de Comercial R&R",  Session = 0 }
+                new UsuarioEntidad {Id=0, Usuario = "cliente@cs2.com", Contraseña = "cliente123", Nombres="NombreCliente" , Apellido="ApellidoCliente", NumeroCelular="987564231",Direccion = "Jr. Example #456", Referencia= "Casa blanca de 2 pisos", EstadoSesion = 1 },
+                new UsuarioEntidad {Id=2, Usuario = "bravo@cs2.com", Contraseña = "bravo123", Nombres="Manuel" , Apellido="Bravo", NumeroCelular="987564792",Direccion = "Jr. Pinos #456", Referencia= "Frente al Poder Judicial",  EstadoSesion = 0 },
+                new UsuarioEntidad {Id=3, Usuario = "taniguchi@cs2.com", Contraseña = "taniguchi123", Nombres="Sonny" , Apellido="Taniguchi", NumeroCelular="987564213",Direccion = "Jr. San Mateo #456", Referencia= "Al lado de Comercial R&R",  EstadoSesion = 0 }
             };           
         }
-
-        public static List<UsuarioBE> GetAll()
+        // Retorna toda la lista de usuarios. 
+        public static List<UsuarioEntidad> ObtenerTodo()
         {
-            return ListaUsuarios;
+            return _listaUsuarios;
         }
 
-        public static UsuarioBE GetUserUnic(int id)
+        // Retornar un usuario específico.
+        public static UsuarioEntidad ObtenerUnicoUsuario(int id)
         {
-           UsuarioBE usuarioRecuperar = ListaUsuarios.FirstOrDefault(elegirUsuario => elegirUsuario.Id == id);
+            UsuarioEntidad usuarioRecuperar = _listaUsuarios.FirstOrDefault(elegirUsuario => elegirUsuario.Id == id);
             return usuarioRecuperar;
         }
 
-
-        public static void Add(UsuarioBE usuario)
-        {
-            //usuario.Id = nextId++;
-            ListaUsuarios.Add(usuario);
+        // Agrega un nuevo usuario a la lista.
+        public static void Agregar(UsuarioEntidad usuario)
+        {            
+            _listaUsuarios.Add(usuario);
         }
 
-        public static void Delete(UsuarioBE usuarioEliminar)
+        // Eliminar un usuario de la Lista.
+        public static void Eliminar(UsuarioEntidad usuarioEliminar)
         {
-            ListaUsuarios.Remove(usuarioEliminar);
+            _listaUsuarios.Remove(usuarioEliminar);
         }
 
-        public static void Update(UsuarioBE user)
+        // Actualizar un usuario de la Lista.
+        public static void Actualizar(UsuarioEntidad user)
         {
-            var index = ListaUsuarios.FindIndex(p => p.Id == user.Id);
+            var index = _listaUsuarios.FindIndex(p => p.Id == user.Id);
             if (index == -1)
                 return;
-
-            ListaUsuarios[index] = user;
+            _listaUsuarios[index] = user;
         }
     }
 }

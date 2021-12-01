@@ -21,7 +21,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Presentacion.WebApplication
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Whatsapp", "Whatsapp", "{42AEB7ED-B99C-46A1-BC87-F4F19113AEF9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Whatsapp.ClassLibrary", "Whatsapp.ClassLibrary\Whatsapp.ClassLibrary.csproj", "{AC354858-313A-4967-8D80-A4B819502A64}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Whatsapp.ClassLibrary", "Whatsapp.ClassLibrary\Whatsapp.ClassLibrary.csproj", "{AC354858-313A-4967-8D80-A4B819502A64}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Minimarket_TestProject", "Minimarket_TestProject\Minimarket_TestProject.csproj", "{F09EEB79-D955-4CA9-8B66-F513A0E3BC61}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,6 +51,10 @@ Global
 		{AC354858-313A-4967-8D80-A4B819502A64}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AC354858-313A-4967-8D80-A4B819502A64}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AC354858-313A-4967-8D80-A4B819502A64}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F09EEB79-D955-4CA9-8B66-F513A0E3BC61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F09EEB79-D955-4CA9-8B66-F513A0E3BC61}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F09EEB79-D955-4CA9-8B66-F513A0E3BC61}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F09EEB79-D955-4CA9-8B66-F513A0E3BC61}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

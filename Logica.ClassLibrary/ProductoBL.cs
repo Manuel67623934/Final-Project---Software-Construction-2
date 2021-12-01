@@ -10,55 +10,54 @@ namespace Logica.ClassLibrary
 {
    public class ProductoBL
     {
-        public List<ProductoBE> GetProductos()
+        // Retorna todos los productos desde la capa de Datos.
+        public List<ProductoEntidad> ObtenerProductos()
         {
-            ProductoDA DatoProducto= new ProductoDA();
-            List<ProductoBE> lista;
-            List<ProductoBE> lista_temp = new List<ProductoBE>();
-            lista = DatoProducto.getProducto();
+            ProductoDatos dataProductos = new ProductoDatos();
+            List<ProductoEntidad> lista;
+            List<ProductoEntidad> listaTemporal = new List<ProductoEntidad>();
+            lista = dataProductos.ObtenerProducto();
             for (int i = 0; i < lista.Count; i++)
             {
-                if (lista[i].portada.Equals('1'))
+                if (lista[i].Portada.Equals('1'))
                 {
-
-                    lista_temp.Add(lista[i]);
-
+                    listaTemporal.Add(lista[i]);
                 }
-
             }
-            return lista_temp;
+            return listaTemporal;
         }
-
-        public ProductoBE getProducto(string Url_Seo)
+        
+        // Retorna un producto especifico extraído desde la capa de Datos.
+        public ProductoEntidad ObtenerProducto(string urlSeo)
         {
-            ProductoDA dato = new ProductoDA();
-            List<ProductoBE> lista;
-            ProductoBE product = new ProductoBE();
-            lista = dato.getProducto();
+            ProductoDatos dataProductos = new ProductoDatos();
+            List<ProductoEntidad> lista;
+            ProductoEntidad producto = new ProductoEntidad();
+            lista = dataProductos.ObtenerProducto();
             for (int i = 0; i < lista.Count; i++)
             {
-                if (lista[i].UrlSeo.Equals(Url_Seo))
+                if (lista[i].UrlSeo.Equals(urlSeo))
                 {
-                    product.Id = lista[i].Id;
-                    product.id_categoria = lista[i].id_categoria;
-                    product.Nombre = lista[i].Nombre;
-                    product.Descripcion = lista[i].Descripcion;
-                    product.Precio = lista[i].Precio;
-                    product.Stock = lista[i].Stock;
-                    product.UrlSeo = lista[i].UrlSeo;
-                    product.imagen = lista[i].imagen;
+                    producto.Id = lista[i].Id;
+                    producto.IdCategoria = lista[i].IdCategoria;
+                    producto.Nombre = lista[i].Nombre;
+                    producto.Descripcion = lista[i].Descripcion;
+                    producto.Precio = lista[i].Precio;
+                    producto.Stock = lista[i].Stock;
+                    producto.UrlSeo = lista[i].UrlSeo;
+                    producto.Imagen = lista[i].Imagen;
                 }
             }
-            return product;
-        }
-
-
-        public static ProductoBE RetornaProducto(int Id)
-        {
-            ProductoDA productoDA = new ProductoDA();
-            ProductoBE producto = productoDA.getProducto().FirstOrDefault(elegirItem => elegirItem.Id == Id);
             return producto;
         }
-
+        
+        // Retorna un producto específico.
+        public static ProductoEntidad RetornaProducto(int Id)
+        {
+            ProductoDatos ProductoDatos = new ProductoDatos();
+            ProductoEntidad producto = ProductoDatos.ObtenerProducto().FirstOrDefault(elegirItem => elegirItem.Id == Id);
+            return producto;
+        }
+        
     }
 }

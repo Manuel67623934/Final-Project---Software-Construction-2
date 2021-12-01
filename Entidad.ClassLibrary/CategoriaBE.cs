@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Entidad.ClassLibrary
 {
-   public class CategoriaBE
+   public class CategoriaEntidad
     {
         [Key]
         [Required]

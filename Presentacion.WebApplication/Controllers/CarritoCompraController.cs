@@ -8,165 +8,103 @@ using Rotativa.AspNetCore;
 using Presentacion.WebApplication.Models;
 using Entidad.ClassLibrary;
 using Logica.ClassLibrary;
+using Whatsapp.ClassLibrary;
 
 namespace Presentacion.WebApplication.Controllers
 {
     public class CarritoCompraController : Controller
     {
-        // GET: CarritoCompra
+        WhatsappAPI _whatsapp = new WhatsappAPI();
         public ActionResult Index()
         {
             WebModel model = new WebModel();
-            model.ItemsCarrito = ItemCarritoBL.GetAll();
-
-            
+            List<CategoriaEntidad> categoria = new CategoriaLogica().ObtenerCategorias();
+            List<ProductoEntidad> producto = new ProductoBL().ObtenerProductos();
+            model.prod = producto;
+            model.categoria_layout = categoria;
+            model.ItemsCarrito = ItemCarritoLogica.ObtenerTodo();
             model.Estado_Session = HttpContext.Session.GetString("Estado_Session");
-
-
+            int cliente_activo = (int)HttpContext.Session.GetInt32("Id_cliente_activo");            
+            model.usuario = UsuarioLogica.ObtenerUnicoUsuario(cliente_activo);
+            model.MontoTotalCarrito = ItemCarritoLogica.CalculaTotal();
             return View("Index", model);
         }
 
-        // GET: CarritoCompra/Details/5
         public ActionResult CrearPDF()
         {
             WebModel model = new WebModel();
-            model.ItemsCarrito = ItemCarritoBL.GetAll();
-            model.MontoTotalCarrito = ItemCarritoBL.CalculaTotal();
-            
-            return new ViewAsPdf("index", model)
-            {
-
-            };
+            model.ItemsCarrito = ItemCarritoLogica.ObtenerTodo();
+            model.MontoTotalCarrito = ItemCarritoLogica.CalculaTotal();
+            model.Estado_Session = HttpContext.Session.GetString("Estado_Session");
+            int cliente_activo = (int)HttpContext.Session.GetInt32("Id_cliente_activo");
+            model.usuario = UsuarioLogica.ObtenerUnicoUsuario(cliente_activo);
+            return new ViewAsPdf("index", model);            
         }
 
-        // GET: CarritoCompra/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: CarritoCompra/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: CarritoCompra/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: CarritoCompra/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: CarritoCompra/Delete/5
-       
         public ActionResult Delete(int Id)
         {
-            ItemCarritoBL.Delete(Id);
+            ItemCarritoLogica.Eliminar(Id);
             WebModel model = new WebModel();
-            model.ItemsCarrito = ItemCarritoBL.GetAll();
-            model.MontoTotalCarrito = ItemCarritoBL.CalculaTotal();
-
-            
+            model.ItemsCarrito = ItemCarritoLogica.ObtenerTodo();
+            model.MontoTotalCarrito = ItemCarritoLogica.CalculaTotal();
             model.Estado_Session = HttpContext.Session.GetString("Estado_Session");
-
-            return View("Index", model);
-        }
-
-        // GET: CarritoCompra/Aumenta_Cantidad/
-
-        public ActionResult Aumenta_Cantidad(int Id)
-        {
-
-            ItemCarritoBL.AumentaCantidad(Id);
-            WebModel model = new WebModel();
-            model.ItemsCarrito = ItemCarritoBL.GetAll();
-            model.MontoTotalCarrito = ItemCarritoBL.CalculaTotal();
-
-
-            model.Estado_Session = HttpContext.Session.GetString("Estado_Session");
-
-            return View("Index", model);
-        }
-
-        // GET: CarritoCompra/Disminuye_Cantidad/
-
-        public ActionResult Disminuye_Cantidad(int Id)
-        {
-
-            ItemCarritoBL.DisminuyeCantidad(Id);
-            WebModel model = new WebModel();
-            model.ItemsCarrito = ItemCarritoBL.GetAll();
-            model.MontoTotalCarrito = ItemCarritoBL.CalculaTotal();
-
+            int cliente_activo = (int)HttpContext.Session.GetInt32("Id_cliente_activo");
+            model.usuario = UsuarioLogica.ObtenerUnicoUsuario(cliente_activo);
             return View("Index", model);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-
         public ActionResult AñadirProducto(string cantidad, int Id)
         {
-            ItemCarritoBL.CrearItem(cantidad, Id);
-             
-
+            ItemCarritoLogica.CrearItem(cantidad, Id);     
             WebModel model = new WebModel();
-            model.ItemsCarrito = ItemCarritoBL.GetAll();
-            model.MontoTotalCarrito = ItemCarritoBL.CalculaTotal();
-
-            return View("Index", model);
+            model.ItemsCarrito = ItemCarritoLogica.ObtenerTodo();
+            model.MontoTotalCarrito = ItemCarritoLogica.CalculaTotal();            
+            List<CategoriaEntidad> categoria = new CategoriaLogica().ObtenerCategorias();
+            List<ProductoEntidad> producto = new ProductoBL().ObtenerProductos();
+            model.prod = producto;
+            model.categoria_layout = categoria;
+            model.Estado_Session = HttpContext.Session.GetString("Estado_Session");
+            model.idUsuario = (int)HttpContext.Session.GetInt32("Id_cliente_activo");
+            model.usuario = UsuarioLogica.ObtenerUnicoUsuario((int)HttpContext.Session.GetInt32("Id_cliente_activo"));
+            return View("../Home/Index", model);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult ActualizarCarrito(string cantidad, int Id)
         {
-
-            ItemCarritoBL.ActualizarCarrito(cantidad, Id);
-
-
+            ItemCarritoLogica.ActualizarCarrito(cantidad, Id);
             WebModel model = new WebModel();
-            model.ItemsCarrito = ItemCarritoBL.GetAll();
-            model.MontoTotalCarrito = ItemCarritoBL.CalculaTotal();
-
-            int c1, c2;
-            for (int i = 0; i < model.ItemsCarrito.Count(); i++)
-            {
-                if (i == 0) {
-                    c1 = model.ItemsCarrito[i].Cantidad;
-                }
-                if (i == 1)
-                {
-                    c2 = model.ItemsCarrito[i].Cantidad;
-                }
-            }
-
-
-                return View("Index", model);
+            model.ItemsCarrito = ItemCarritoLogica.ObtenerTodo();
+            model.MontoTotalCarrito = ItemCarritoLogica.CalculaTotal();
+            model.Estado_Session = HttpContext.Session.GetString("Estado_Session");
+            int cliente_activo = (int)HttpContext.Session.GetInt32("Id_cliente_activo");
+            model.usuario = UsuarioLogica.ObtenerUnicoUsuario(cliente_activo);
+            return View("Index", model);
         }
 
+        public ActionResult ApiWsp()         
+        {
+            WebModel model = new WebModel();
+            int cliente_activo = (int)HttpContext.Session.GetInt32("Id_cliente_activo");
+            model.usuario = UsuarioLogica.ObtenerUnicoUsuario(cliente_activo);
+            model.MontoTotalCarrito = ItemCarritoLogica.CalculaTotal();
+            string msg =
+                "Cliente : " + model.usuario.Nombres + "  " + model.usuario.Apellido + "\n" +
+                "Telefono: " + model.usuario.NumeroCelular + "\n" +
+                "Dirección: " + model.usuario.Direccion + " - " + model.usuario.Referencia + "\n" +
+                "Lista de compra : \n" + ItemCarritoLogica.ListaProductos() + "\n" +
+                "Total -----> " + model.MontoTotalCarrito;
+            _whatsapp.EnviarWhatsapp(msg);
+            ItemCarritoLogica.LimpiarCarrito();
+            return RedirectToAction("Index", "Home");
+        }
     }
 }

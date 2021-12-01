@@ -15,51 +15,43 @@ namespace Presentacion.WebApplication.Controllers
         public ActionResult Producto(string Url_Seo)
         {
             ProductoBL p = new ProductoBL();
-            ProductoBE producto = p.getProducto(Url_Seo);
-            List<CategoriaBE> lista_categoria = new CategoriaBL().getCategorias();
-            CategoriaBE cate = new CategoriaBL().ObtenerCategoriaProducto(Url_Seo);
+            ProductoEntidad producto = p.ObtenerProducto(Url_Seo);
+            List<CategoriaEntidad> lista_categoria = new CategoriaLogica().ObtenerCategorias();
+            CategoriaEntidad cate = new CategoriaLogica().ObtenerCategoriaProducto(Url_Seo);
             WebModel model_producto = new WebModel()
             {
                 producto_solo = producto,
                 categoria_layout = lista_categoria,
                 categoria = cate,
-                //usuario = UsuarioBL.BuscarUsuarioSessionActiva()
-                           
+                //usuario = UsuarioLogica.BuscarUsuarioSessionActiva()                           
             };
-
             model_producto.Estado_Session = HttpContext.Session.GetString("Estado_Session");
-
-
+            int cliente_activo = (int)HttpContext.Session.GetInt32("Id_cliente_activo");
+            model_producto.usuario = UsuarioLogica.ObtenerUnicoUsuario(cliente_activo);
             return View(model_producto);
         }
         public ActionResult Login()
-        {
-            
+        {            
             return View();
         }
 
         public ActionResult Categoria (string Url_Seo)
         {
-            CategoriaBL categoria = new CategoriaBL();
-            List<CategoriaBE> lista_categoria = new CategoriaBL().getCategorias();
-            List<ProductoBE> lista_producto = categoria.GetProductos(Url_Seo);
-            CategoriaBE cate = new CategoriaBL().ObtenerCategoria(Url_Seo);
-
-
-
-
+            CategoriaLogica categoria = new CategoriaLogica();
+            List<CategoriaEntidad> lista_categoria = new CategoriaLogica().ObtenerCategorias();
+            List<ProductoEntidad> lista_producto = categoria.ObtenerProductos(Url_Seo);
+            CategoriaEntidad cate = new CategoriaLogica().ObtenerCategoria(Url_Seo);
             WebModel model = new WebModel()
             {
                 prod = lista_producto,
                 categoria = cate,
                 categoria_layout = lista_categoria,
-                enSession = 1,
-                usuario = UsuarioBL.BuscarUsuarioSessionActiva(),                
+                enSession = 1,                                
                 Estado_Session = HttpContext.Session.GetString("Estado_Session")
-
-        };
+            };
+            int cliente_activo = (int)HttpContext.Session.GetInt32("Id_cliente_activo");
+            model.usuario = UsuarioLogica.ObtenerUnicoUsuario(cliente_activo);
             return View(model) ;
-        }
-       
+        }       
     }
 }

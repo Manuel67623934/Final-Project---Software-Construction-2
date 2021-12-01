@@ -7,50 +7,53 @@ using Entidad.ClassLibrary;
 
 namespace Dato.ClassLibrary
 {
-    public class ItemCarritoDA
+    public class ItemCarritoDatos
     {
-        static List<ItemCarritoBE> ItemsDelCarrito { get; }
-        static int nextId = 1;
-        
-        //Método para crear items en el carrito
-        static ItemCarritoDA()
-        {
-            ProductoDA productos = new ProductoDA();
-            List<ProductoBE> producto = productos.getProducto();
+        static List<ItemCarritoEntidad> ItemsDelCarrito { get; }        
 
-            ItemsDelCarrito = new List<ItemCarritoBE> { };            
+        // Método para crear items en el carrito.
+        static ItemCarritoDatos()
+        {
+            // ProductoDatos recibeProductos = new ProductoDatos();
+            // List<ProductoEntidad> producto = recibeProductos.GetProducto();
+            ItemsDelCarrito = new List<ItemCarritoEntidad> { };
         }
 
-        //Método para retornar todos los items carrito
-        public static List<ItemCarritoBE> GetAll()
+        // Método para retornar todos los items carrito.
+        public static List<ItemCarritoEntidad> ObtenerTodo()
         {
             return ItemsDelCarrito;
         }
 
-        
-        
-        //Método para agregar un item al carrito
-        public static void Add(ItemCarritoBE item)
-        {            
-            ItemsDelCarrito.Add(item);            
-        }
-        
-        
-        //Método para borrar un item del carrito
-        public static void Delete(ItemCarritoBE itemEliminar)
+        // Método para agregar un item al carrito.
+        public static void Agregar(ItemCarritoEntidad item)
         {
-            ItemsDelCarrito.Remove(itemEliminar);            
+            ItemsDelCarrito.Add(item);
         }
 
+        // Método para borrar un item del carrito.
+        public static void Eliminar(ItemCarritoEntidad itemEliminar)
+        {
+            ItemsDelCarrito.Remove(itemEliminar);
+        }
 
-
-        //Actualizar cantidad
-        public static void Update(ItemCarritoBE item)
+        // Actualizar cantidad.
+        public static void Actualizar(ItemCarritoEntidad item)
         {
             var index = ItemsDelCarrito.FindIndex(p => p.Id == item.Id);
-            ItemsDelCarrito[index] = item;           
+            ItemsDelCarrito[index] = item;
         }
 
-        
+        // Limpiar el carrito una vez que el usuario cierre su sesion.
+        public static void LimpiarCarrito()
+        {
+            List<ItemCarritoEntidad> itemsEliminar = ItemCarritoDatos.ObtenerTodo();            
+            int cantidadItemsActual = itemsEliminar.Count;
+            while (ItemsDelCarrito.Count > 0)
+            {
+                ItemsDelCarrito.Remove(itemsEliminar[cantidadItemsActual - 1]);
+                cantidadItemsActual--;
+            }
+        }
     }
 }

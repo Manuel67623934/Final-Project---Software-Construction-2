@@ -35,21 +35,15 @@
                     </ul>
 
                     <form class="d-flex" asp-controller="Home" asp-action="ChangeLanguage" method="post">
-
                         <select name="culture">
                             <option value="es-ES">@language.Getkey("Español")</option>
                             <option value="en-US">@language.Getkey("Ingles")</option>
                             <option value="ru-RU">@language.Getkey("Ruso")</option>
                         </select>
-                        <button class="btn btn-outline-success" type="submit">
+                        <button class="btn btn-outline-dark" type="submit">
                             @language.Getkey("Seleccionar")
                         </button>
-
                     </form>
-
-
-
-
 
 
                     @if (Model.Estado_Session == "desactivado")
@@ -60,34 +54,32 @@
                                 <option value="1">@language.Getkey("Correo")</option>
                                 <option value="2">@language.Getkey("Celular")</option>
                             </select>
-                            <button class="btn btn-outline-success" type="submit">
+                            <button class="btn btn-outline-dark" type="submit">
                                 @language.Getkey("Iniciar Sesion")
                             </button>
 
                         </form>
 
                         <form class="d-flex">
-                            <a class="btn btn-outline-success" asp-controller="Usuario" asp-action="Registration">@language.Getkey("Registro")</a>
+                            <a class="btn btn-outline-dark" asp-controller="Usuario" asp-action="Registro">@language.Getkey("Registro")</a>
                         </form>
                     }
 
                     @if (Model.Estado_Session != "desactivado")
                     {
 
-                        <form class="d-flex" asp-controller="Home" asp-action="Index" method="post">
+                        <form class="d-flex" asp-controller="Home" asp-action="CerrarSesion" method="post">
 
                             <select name="seleccion">
-                                <option value=@Convert.ToString(Model.usuario.Id)>@language.Getkey("Cerrar Session")</option>
-                                <option value="1">@language.Getkey("Ver Carrito")</option>s
+                                <option value="1">@language.Getkey("Ver Carrito")</option>
+                                <option value=@Convert.ToString(Model.idUsuario)>@language.Getkey("Cerrar Session")</option>                                
                             </select>
-                            <button class="btn btn-outline-success" type="submit">
+                            <button class="btn btn-outline-dark" type="submit">
                                 @language.Getkey("Ir")
                             </button>
 
                         </form>
-                        <button class="btn btn-outline-success" type="submit">
-                            @language.Getkey("Hola") @Model.usuario.FirtsName
-                        </button>
+                      
 
                     }
 
@@ -109,11 +101,11 @@
                     <span class="text-white">@language.Getkey("Minimarket M&S")</span>
                     <p class="text-muted">@language.Getkey("Aceptamos todas las tarjetas")</p>
                     <ul class="list-inline">
-                        <li class="list-inline-item"><i class="fab fa-cc-visa text-white"></i></li>
-                        <li class="list-inline-item"><i class="fab fa-cc-mastercard text-white"></i></li>
-                        <li class="list-inline-item"><i class="fab fa-cc-discover text-white"></i></li>
-                        <li class="list-inline-item"><i class="fab fa-cc-paypal text-white"></i></li>
-                        <li class="list-inline-item"><i class="fab fa-cc-amex text-white"></i></li>
+                        <li class="list-inline-item"><em class="fab fa-cc-visa text-white"></em></li>
+                        <li class="list-inline-item"><em class="fab fa-cc-mastercard text-white"></em></li>
+                        <li class="list-inline-item"><em class="fab fa-cc-discover text-white"></em></li>
+                        <li class="list-inline-item"><em class="fab fa-cc-paypal text-white"></em></li>
+                        <li class="list-inline-item"><em class="fab fa-cc-amex text-white"></em></li>
                     </ul>
                 </div>
                 <div class="col-md-2 col-sm-12 mb-3 mb-md-0">
@@ -137,10 +129,10 @@
                     <p class="lead mb-1 text-white">Telf: (+51) 941 488 793</p>
                     <p class="text-muted">Av. Las Palmeras 128 Int 102<br />Los Olivos - Lima</p>
                     <ul class="list-inline mb-0">
-                        <li class="list-inline-item"><a class="social-icon" href="#"><i class="fab fa-facebook-f"></i></a></li>
-                        <li class="list-inline-item"><a class="social-icon" href="#"><i class="fab fa-twitter"></i></a></li>
-                        <li class="list-inline-item"><a class="social-icon" href="#"><i class="fab fa-youtube"></i></a></li>
-                        <li class="list-inline-item"><a class="social-icon" href="#"><i class="fab fa-pinterest"></i></a></li>
+                        <li class="list-inline-item"><a class="social-icon" href="#"><em class="fab fa-facebook-f"></em></a></li>
+                        <li class="list-inline-item"><a class="social-icon" href="#"><em class="fab fa-twitter"></em></a></li>
+                        <li class="list-inline-item"><a class="social-icon" href="#"><em class="fab fa-youtube"></em></a></li>
+                        <li class="list-inline-item"><a class="social-icon" href="#"><em class="fab fa-pinterest"></em></a></li>
                     </ul>
                 </div>
             </div>

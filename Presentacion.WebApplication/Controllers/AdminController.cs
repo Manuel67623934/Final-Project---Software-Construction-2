@@ -10,24 +10,18 @@ namespace Presentacion.WebApplication.Controllers
 {
     public class AdminController : Controller
     {
+        AdminModel model = new AdminModel();
         public ActionResult Index()
         {
             string mensaje = "no entregado";
-            AdminModel model = new AdminModel()
-            {
-                mensaje =mensaje
-            };
+            model.mensaje = mensaje;
             return View(model);
         }
-        public ActionResult EnviarMensaje(string mensaje)
+        /*public ActionResult EnviarMensaje(string mensaje)
         {
             string mensaje_confirmacion = new WhatsappAPI().EnviarWhatsapp(mensaje);
-            AdminModel model = new AdminModel()
-            {
-                mensaje = mensaje_confirmacion
-            };
+            model.mensaje = mensaje_confirmacion;
             return View ("Index",model);
-        }
+        }*/
     }
-
 }

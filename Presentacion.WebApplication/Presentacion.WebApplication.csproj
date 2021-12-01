@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <CodeAnalysisRuleSet>..\.sonarlint\minimarketmys_scan_1csharp.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 
   <ItemGroup>
@@ -10,6 +11,21 @@
 
   <ItemGroup>
     <Content Remove="Views\Usuario\Registro.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="CarritoPDF\wkhtmltoimage.exe" />
+    <None Remove="CarritoPDF\wkhtmltopdf.exe" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AdditionalFiles Include="..\.sonarlint\minimarketmys_scan_1\CSharp\SonarLint.xml" Link="SonarLint.xml" />
+    <Content Include="CarritoPDF\wkhtmltoimage.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="CarritoPDF\wkhtmltopdf.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
@@ -28,6 +44,10 @@
     <ProjectReference Include="..\Dato.ClassLibrary\Dato.ClassLibrary.csproj" />
     <ProjectReference Include="..\Logica.ClassLibrary\Logica.ClassLibrary.csproj" />
     <ProjectReference Include="..\Whatsapp.ClassLibrary\Whatsapp.ClassLibrary.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\imagen\NewFolder\" />
   </ItemGroup>
 
 </Project>

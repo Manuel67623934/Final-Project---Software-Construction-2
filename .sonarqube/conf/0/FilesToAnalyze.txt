@@ -1,0 +1,4 @@
+﻿C:\Users\Woos\source\repos\ProyectoMiniMarket\Entidad.ClassLibrary\CategoriaBE.cs
+C:\Users\Woos\source\repos\ProyectoMiniMarket\Entidad.ClassLibrary\ItemCarritoBE.cs
+C:\Users\Woos\source\repos\ProyectoMiniMarket\Entidad.ClassLibrary\ProductoBE.cs
+C:\Users\Woos\source\repos\ProyectoMiniMarket\Entidad.ClassLibrary\UsuarioBE.cs

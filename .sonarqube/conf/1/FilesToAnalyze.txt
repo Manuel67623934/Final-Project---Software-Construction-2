@@ -1,0 +1,5 @@
+﻿C:\Users\Woos\source\repos\ProyectoMiniMarket\Dato.ClassLibrary\CategoriaDA.cs
+C:\Users\Woos\source\repos\ProyectoMiniMarket\Dato.ClassLibrary\ItemCarritoDA.cs
+C:\Users\Woos\source\repos\ProyectoMiniMarket\Dato.ClassLibrary\MinimarketDa.cs
+C:\Users\Woos\source\repos\ProyectoMiniMarket\Dato.ClassLibrary\ProductoDA.cs
+C:\Users\Woos\source\repos\ProyectoMiniMarket\Dato.ClassLibrary\UsuarioDA.cs

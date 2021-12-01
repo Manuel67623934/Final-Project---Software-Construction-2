@@ -10,26 +10,20 @@ namespace Whatsapp.ClassLibrary
 {
     public class WhatsappAPI
     {
-        public string EnviarWhatsapp(string mensaje)
+        public void EnviarWhatsapp(string msg)
         {
-                      
-                var accountSid = "AC6ae308909bdb98ca43163475503afb1b";
-                var authToken = "6044f9d986463e7313620c8067211704";
-                TwilioClient.Init(accountSid, authToken);
-                var messageOptions = new CreateMessageOptions(
+            var accountSid = "AC16cf5b676838ce1300104d42945cdd65";
+            var authToken = "30dc2b8bb9c8f7df94403a499c94f80f";
+            TwilioClient.Init(accountSid, authToken);
+
+            var messageOptions = new CreateMessageOptions(
                 new PhoneNumber("whatsapp:+51929493508"));
-                messageOptions.From = new PhoneNumber("whatsapp:+14155238886");
-                messageOptions.Body = mensaje;
+            messageOptions.From = new PhoneNumber("whatsapp:+14155238886");
+            messageOptions.Body = msg;
 
-                var message = MessageResource.Create(messageOptions);
-                Console.WriteLine(message.Body);
-            
-
-                         
-            
-            string mensajce = "entregado";
-            return mensajce;
+            var message = MessageResource.Create(messageOptions);
+            Console.WriteLine(message.Body);
         }
-    
+
     }
 }

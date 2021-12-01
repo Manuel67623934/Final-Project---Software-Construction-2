@@ -9,6 +9,6 @@ namespace Dato.ClassLibrary
         {
 
         }
-        public DbSet<CategoriaBE> Categoria { get; set; }
+        public DbSet<CategoriaEntidad> Categoria { get; set; }
     }
 }

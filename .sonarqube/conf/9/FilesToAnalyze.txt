@@ -1,0 +1,4 @@
+﻿C:\Users\Woos\source\repos\ProyectoMiniMarket\Logica.ClassLibrary\CategoriaBL.cs
+C:\Users\Woos\source\repos\ProyectoMiniMarket\Logica.ClassLibrary\ItemCarritoBL.cs
+C:\Users\Woos\source\repos\ProyectoMiniMarket\Logica.ClassLibrary\ProductoBL.cs
+C:\Users\Woos\source\repos\ProyectoMiniMarket\Logica.ClassLibrary\UsuarioBL.cs

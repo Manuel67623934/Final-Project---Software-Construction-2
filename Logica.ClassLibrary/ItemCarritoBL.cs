@@ -10,88 +10,89 @@ using Dato.ClassLibrary;
 namespace Logica.ClassLibrary
 {
     
-    public class ItemCarritoBL 
+    public class ItemCarritoLogica 
     {
-        static int nextId = 0;
-        public static List<ItemCarritoBE> GetAll()
+        static int __nextId = 0;
+
+        /// <summary>
+        /// Retorna todos los items del carrito de compra.
+        /// </summary>
+
+        public static List<ItemCarritoEntidad> ObtenerTodo()
         {
-            return ItemCarritoDA.GetAll();
+            return ItemCarritoDatos.ObtenerTodo();
         }
 
-        public static void Add(ItemCarritoBE item)
+        // Agregar un nuevo item al carrito de compra.
+        public static void Agregar(ItemCarritoEntidad item)
         {
-            item.Id = nextId++;
+            item.Id = __nextId++;
             item.Subtotal = CalculaSubtotal(item);
-            ItemCarritoDA.Add(item);
+            ItemCarritoDatos.Agregar(item);
         }
 
-        public static void Update(ItemCarritoBE item)
+        // Actualiza un item del carrito de compra.
+        public static void Actualizar(ItemCarritoEntidad item)
         {
             item.Subtotal = CalculaSubtotal(item);
-            ItemCarritoDA.Update(item);
+            ItemCarritoDatos.Actualizar(item);
         }
 
-
-        public static void Delete(int idEliminar)
+        // Elimina un item del carrito de compra.
+        public static void Eliminar(int idEliminar)
         {
-            ItemCarritoBE itemEliminar = ItemCarritoDA.GetAll().FirstOrDefault(elegirItem => elegirItem.Id == idEliminar);
-            ItemCarritoDA.Delete(itemEliminar);
+            ItemCarritoEntidad itemEliminar = ItemCarritoDatos.ObtenerTodo().FirstOrDefault(elegirItem => elegirItem.Id == idEliminar);
+            ItemCarritoDatos.Eliminar(itemEliminar);
         }
 
-
-
-        public static double CalculaSubtotal(ItemCarritoBE item)
+        // Calcular cantidad de producto * precio del producto, acumula este resultado en la subtotal.
+        public static double CalculaSubtotal(ItemCarritoEntidad item)
         {
-            double subtotal = 0.0;            
-            return subtotal = item.Cantidad * item.Producto.Precio;
+            double subtotal = item.Cantidad * item.Producto.Precio;            
+            return subtotal;
         }
 
+        // Calcular la suma de todos los subtotales y retorna la suma (total).
         public static double CalculaTotal()
         {
             double subtotal = 0.0;
             double total = 0.0;
-
-            for (int i = 0; i < ItemCarritoDA.GetAll().Count(); i++)
+            for (int i = 0; i < ItemCarritoDatos.ObtenerTodo().Count; i++)
             {
-                subtotal = ItemCarritoDA.GetAll()[i].Subtotal;
+                subtotal = ItemCarritoDatos.ObtenerTodo()[i].Subtotal;
                 total = total + subtotal;
             }
-
             return total;
         }
 
-
+        // Incrementa la cantidad del item.
         public static void AumentaCantidad(int id)
         {   
-            int cantidad_actual = 0;
-            int cantidad_incrementada = 0;
-            ItemCarritoBE item = ItemCarritoDA.GetAll().FirstOrDefault(elegirItem => elegirItem.Id == id);
-            cantidad_actual = item.Cantidad;            
-            cantidad_incrementada = cantidad_actual + 1;
-            item.Cantidad = cantidad_incrementada;            
-            ItemCarritoBL.Update(item);
+            int cantidadActual = 0;
+            int cantidadIncrementada = 0;
+            ItemCarritoEntidad item = ItemCarritoDatos.ObtenerTodo().FirstOrDefault(elegirItem => elegirItem.Id == id);
+            cantidadActual = item.Cantidad;            
+            cantidadIncrementada = cantidadActual + 1;
+            item.Cantidad = cantidadIncrementada;            
+            ItemCarritoLogica.Actualizar(item);
         }
 
+        // Disminuye la cantidad del item.
         public static void DisminuyeCantidad(int id)
         {
-            ItemCarritoBE item = ItemCarritoDA.GetAll().FirstOrDefault(elegirItem => elegirItem.Id == id);
+            ItemCarritoEntidad item = ItemCarritoDatos.ObtenerTodo().FirstOrDefault(elegirItem => elegirItem.Id == id);
             if (item.Cantidad > 0)
             {
                 item.Cantidad = item.Cantidad - 1;
-                ItemCarritoBL.Update(item);
-            }
-            else
-            {
-
-            }
-            
+                ItemCarritoLogica.Actualizar(item);
+            }   
         }
 
-
+        // Extrae los datos de un producto de la capa de Datos y crea un nuevo item del carrito de compra.
         public static void CrearItem(string cantidad, int idProducto)
         {
-            ProductoBE producto = ProductoBL.RetornaProducto(idProducto);
-            ItemCarritoBE nuevoItem = new ItemCarritoBE();
+            ProductoEntidad producto = ProductoBL.RetornaProducto(idProducto);
+            ItemCarritoEntidad nuevoItem = new ItemCarritoEntidad();
             nuevoItem.Producto = producto;
             nuevoItem.ProductoNombre = producto.Nombre;
             nuevoItem.ProductoPrecio = producto.Precio;
@@ -99,19 +100,34 @@ namespace Logica.ClassLibrary
             nuevoItem.Cantidad = int.Parse(cantidad);
             nuevoItem.Subtotal = nuevoItem.ProductoPrecio * nuevoItem.Cantidad;
             nuevoItem.Total = 0;
-
-            ItemCarritoBL.Add(nuevoItem);
+            ItemCarritoLogica.Agregar(nuevoItem);
         }
 
-
+        // Extrae los items actualizados del carrito de compra desde la capa de Datos.
         public static void ActualizarCarrito(string cantidad, int idItem)
         {
-            ItemCarritoBE item = ItemCarritoDA.GetAll().FirstOrDefault(elegirItem => elegirItem.Id == idItem);
+            ItemCarritoEntidad item = ItemCarritoDatos.ObtenerTodo().FirstOrDefault(elegirItem => elegirItem.Id == idItem);
             item.Cantidad = int.Parse(cantidad);
-            ItemCarritoBL.Update(item);
+            ItemCarritoLogica.Actualizar(item);
         }
 
+        // Limpia los datos del carrito, llama a la función de la capa de Datos.
+        public static void LimpiarCarrito()
+        {
+            ItemCarritoDatos.LimpiarCarrito();
+        }
 
-
+        // Genera la lista de productos del carrito para ser enviado al API de wsp.
+        public static string ListaProductos()
+        {
+            string listaProductos;
+            string listaProductosTotal = "";
+            for (int i = 0; i < ItemCarritoLogica.ObtenerTodo().Count; i++)
+            {
+                listaProductos = ItemCarritoLogica.ObtenerTodo()[i].Cantidad + " --- " + ItemCarritoLogica.ObtenerTodo()[i].ProductoNombre + " --- " + ItemCarritoLogica.ObtenerTodo()[i].ProductoPrecio + " --- " + ItemCarritoLogica.ObtenerTodo()[i].Subtotal + "\n";
+                listaProductosTotal = listaProductosTotal + listaProductos;
+            }
+            return listaProductosTotal;
+        }
     }
 }

@@ -7,13 +7,13 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Entidad.ClassLibrary
 {
-    public class ItemCarritoBE
+    public class ItemCarritoEntidad
     {
         [Key]
         [Required]
         public int Id { get; set; }
         [Required]
-        public ProductoBE Producto { get; set; }
+        public ProductoEntidad Producto { get; set; }
         [Required]
         public string ProductoNombre { get; set; }
         [Required]

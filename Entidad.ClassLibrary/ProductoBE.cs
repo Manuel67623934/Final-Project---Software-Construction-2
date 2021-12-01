@@ -3,14 +3,14 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Entidad.ClassLibrary
 {
-   public class ProductoBE
+   public class ProductoEntidad
     {
         [Key]
         [Required]
         public int Id { get; set; }
         [ForeignKey("CategoriaDA")]
         [Required]
-        public int id_categoria { get; set; }
+        public int IdCategoria { get; set; }
         [Required]
         public string Nombre { get; set; }
         [Required]
@@ -20,11 +20,11 @@ namespace Entidad.ClassLibrary
         [Required]
         public string Descripcion { get; set; }
         [Required]
-        public char portada { get; set; }
+        public char Portada { get; set; }
         [Required]
         public double Precio { get; set; }
         [Required]
-        public string imagen { get; set; }
+        public string Imagen { get; set; }
 
     }
 }

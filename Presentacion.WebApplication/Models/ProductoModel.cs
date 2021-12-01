@@ -8,7 +8,7 @@ namespace Presentacion.WebApplication.Models
 {
     public class ProductoModel
     {
-        public ProductoBE producto_solo { get; set; }
-        public List<CategoriaBE> categoria_layout { get; set; }
+        public ProductoEntidad producto_solo { get; set; }
+        public List<CategoriaEntidad> categoria_layout { get; set; }
     }
 }

@@ -26,7 +26,7 @@
         <div class="row">
             <div class="col-lg-6 mb-5 mb-lg-0">
                 <div class="row">
-                    <img src="/imagen/@Model.producto_solo.imagen" class="card-img-top" alt="producto">
+                    <img src="/imagen/@Model.producto_solo.Imagen" class="card-img-top" alt="producto">
                 </div>
             </div>
             <!-- Item info-->
@@ -35,57 +35,42 @@
                 <h1>@Model.producto_solo.Nombre</h1>
                 <div class="d-flex align-items-center">
                     <ul class="list-inline mb-2 me-3 small">
-                        <li class="list-inline-item m-0"><i class="fas fa-star small text-warning"></i></li>
-                        <li class="list-inline-item m-0"><i class="fas fa-star small text-warning"></i></li>
-                        <li class="list-inline-item m-0"><i class="fas fa-star small text-warning"></i></li>
-                        <li class="list-inline-item m-0"><i class="fas fa-star small text-warning"></i></li>
-                        <li class="list-inline-item m-0"><i class="fas fa-star small text-muted"></i></li>
+                        <li class="list-inline-item m-0"><em class="fas fa-star small text-warning"></em></li>
+                        <li class="list-inline-item m-0"><em class="fas fa-star small text-warning"></em></li>
+                        <li class="list-inline-item m-0"><em class="fas fa-star small text-warning"></em></li>
+                        <li class="list-inline-item m-0"><em class="fas fa-star small text-warning"></em></li>
+                        <li class="list-inline-item m-0"><em class="fas fa-star small text-muted"></em></li>
                     </ul>
                     <p class="small text-muted mb-2">@language.Getkey("Opiniones de los usuarios")</p>
                 </div>
                 <p class="h4">S/ @Model.producto_solo.Precio</p>
                 <p class="text-small mb-4">@Model.producto_solo.Descripcion</p>
-
-
-
+                
                 <script language="javascript">
 
+                    function validaCantidad(formulario) {
 
-                    function validaCantidad(form) {
-
-                        if (form.cantidad.value < 1) {
-                            form.cantidad.value = 1;
+                        if (formulario.cantidad.value < 1) {
+                            formulario.cantidad.value = 1;
                             alert(@language.Getkey("Alerta1"));
                         }
 
-                        if (form.cantidad.value > 10) {
-                            form.cantidad.value = 10;
+                        if (formulario.cantidad.value > 10) {
+                            formulario.cantidad.value = 10;
                             alert(@language.Getkey("Alerta2"));
                         }
 
                     }
                 </script>
 
-
-
-
                 <form name="formulario" method="post" asp-controller="CarritoCompra" asp-action="AñadirProducto" asp-route-id=@Model.producto_solo.Id>
 
                     <input type="text" name="cantidad" value="1" size="2" readonly />
-                    <input type="button" value="+" onclick="formulario.cantidad.value++;
-                    validaCantidad(this.form)" />
-                    <input type="button" value="-" onclick="formulario.cantidad.value--;
-                    validaCantidad(this.form)" />
-
-
+                    <input type="button" value="+" onclick="cantidad.value++; validaCantidad(this.formulario)" />
+                    <input type="button" value="-" onclick="cantidad.value--; validaCantidad(this.formulario)" />
                     <button type="submit" class="btn btn-primary btn-sm py-2 border-bottom-0 px-5 me-3"> <i class="fas fa-shopping-bag py-1 me-2"></i>@language.Getkey("Añadir al carrito")</button>
 
                 </form>
-
-
-
-
-
 
             </div>
         </div>

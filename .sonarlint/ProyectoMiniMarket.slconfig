@@ -1,0 +1,12 @@
+{
+  "ServerUri": "http://localhost:9000/",
+  "Organization": null,
+  "ProjectKey": "minimarket_scaner_2",
+  "ProjectName": "minimarket_scaner_2",
+  "Profiles": {
+    "CSharp": {
+      "ProfileKey": "AXzj9tJZV6JDB5-ANwUQ",
+      "ProfileTimestamp": "2021-11-03T04:02:56Z"
+    }
+  }
+}

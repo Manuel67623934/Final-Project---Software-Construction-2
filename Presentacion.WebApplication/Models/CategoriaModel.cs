@@ -8,9 +8,9 @@ namespace Presentacion.WebApplication.Models
 {
     public class CategoriaModel
     {
-        public List<CategoriaBE> categoria_layout { get; set; }
-        public List<ProductoBE> prod { get; set; }
-        public CategoriaBE categoria { get; set; }
+        public List<CategoriaEntidad> categoria_layout { get; set; }
+        public List<ProductoEntidad> prod { get; set; }
+        public CategoriaEntidad categoria { get; set; }
         public string prueba { get; set; }
 
         //tipoLogin
